@@ -1,0 +1,56 @@
+.margin-left {
+    margin-left: 20px;
+}
+
+.action {
+    justify-content: center;
+}
+
+.nb-column-firstName {
+    width: 60%;
+    overflow: auto;
+}
+
+.nb-column-action {
+    width: 40%;
+}
+
+@media screen and (min-width: 400px) {
+    .nb-column-firstName {
+        width: 45%;
+    }
+    .nb-column-lastName {
+        width: 30%;
+    }
+    .nb-column-action {
+        width: 25%;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .nb-column-firstName {
+        width: 35%;
+    }
+    .nb-column-lastName {
+        width: 25%;
+    }
+    .nb-column-spouse {
+        width: 20%;
+    }
+    .nb-column-action {
+        width: 20%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .nb-column-firstName {
+        width: 25%;
+    }
+    .nb-column-lastName,
+    .nb-column-spouse,
+    .nb-column-country,
+    .nb-column-address,
+    .nb-column-action {
+        width: 15%;
+    }
+}

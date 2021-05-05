@@ -1,0 +1,53 @@
+<div class="page-header">
+    <h1 class="title">{{ componentType === 'subject' ? 'Subject' : 'Family Tree' }}</h1>
+    <ng-container *ngIf="componentType === 'subject'">
+        <section class="my-auto">
+            <button nbButton hero status="primary" (click)="openAddSubjectDialog()"><nb-icon icon="person-outline"></nb-icon>Add Subject</button>
+        </section>
+    </ng-container>
+</div>
+<nb-card>
+    <nb-card-body>
+        <table [nbTreeGrid]="data">
+            <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="columns"></tr>
+            <tr [clickToToggle]="false" nbTreeGridRow *nbTreeGridRowDef="let row; columns: columns"></tr>
+            <ng-container *ngFor="let column of columns; let i = index" [nbTreeGridColumnDef]="column">
+                <ng-template [ngIf]="column === 'firstName'">
+                    <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+                        {{ columnNames[i] }}
+                    </th>
+                </ng-template>
+                <ng-template [ngIf]="column === 'action'">
+                    <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+                        {{ columnNames[i] }}
+                    </th>
+                </ng-template>
+                <ng-template [ngIf]="column !== 'action' || column !== 'firstName'">
+                    <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+                        {{ columnNames[i] }}
+                    </th>
+                </ng-template>
+                <ng-template [ngIf]="column === 'firstName'">
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                        <div style="display: flex">
+                            <nb-tree-grid-row-toggle [expanded]="row.expanded" style="padding: 5px" *ngIf="row?.children?.length"> </nb-tree-grid-row-toggle>
+                            <nb-user [ngClass]="{ 'margin-left': !row?.children?.length }" name="{{ row.data[column] || '-' }}" picture="{{ row.data['detail'].imageURL ? BASE_URL + row.data['detail'].projectId + '/' + row.data['detail'].imageURL : row.data['detail'].gender === 'M' ? '/assets/images/subjects/default-male.png' : '/assets/images/subjects/default-female.png' }}"> </nb-user>
+                        </div>
+                    </td>
+                </ng-template>
+                <ng-template [ngIf]="column === 'action'">
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                        <nb-actions>
+                            <nb-action [nbContextMenu]="menuItems" (click)="openMenu(row.data)">
+                                <nb-icon icon="more-vertical-outline"></nb-icon>
+                            </nb-action>
+                        </nb-actions>
+                    </td>
+                </ng-template>
+                <ng-template [ngIf]="column !== 'action' || column !== 'firstName'">
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">{{ row.data[column] || '-' }}</td>
+                </ng-template>
+            </ng-container>
+        </table>
+    </nb-card-body>
+</nb-card>

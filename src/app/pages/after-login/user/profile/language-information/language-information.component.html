@@ -1,0 +1,53 @@
+<form [formGroup]="languageInfoForm" (ngSubmit)="onSubmit(languageInfoForm)" class="form-container">
+    <div class="card-header">
+        <h6><nb-icon icon="hash-outline"></nb-icon>{{ type | uppercase }}</h6>
+        <nb-actions>
+            <nb-action>
+                <button nbButton type="button" *ngIf="getButtonActiveStatus('edit')" (click)="editForm()">
+                    <nb-icon nbTooltip="Edit" status="primary" icon="edit-2-outline"></nb-icon>
+                </button>
+                <nb-icon *ngIf="!getButtonActiveStatus('edit')" nbTooltip="Edit" status="basic" icon="edit-2-outline"></nb-icon>
+            </nb-action>
+            <nb-action>
+                <button nbButton type="button" *ngIf="getButtonActiveStatus('reset')" (click)="resetForm()">
+                    <nb-icon nbTooltip="Reset" status="primary" icon="refresh-outline"></nb-icon>
+                </button>
+                <nb-icon *ngIf="!getButtonActiveStatus('reset')" nbTooltip="Reset" status="basic" icon="refresh-outline"></nb-icon>
+            </nb-action>
+            <nb-action>
+                <button nbButton type="submit" *ngIf="getButtonActiveStatus('save')">
+                    <nb-icon nbTooltip="Save" status="primary" icon="save-outline"></nb-icon>
+                </button>
+                <nb-icon *ngIf="!getButtonActiveStatus('save')" nbTooltip="Save" status="basic" icon="save-outline"></nb-icon>
+            </nb-action>
+            <nb-action>
+                <button nbButton type="button" *ngIf="getButtonActiveStatus('cancel')" (click)="cancelForm()">
+                    <nb-icon nbTooltip="Cancel" status="primary" icon="close-circle-outline"></nb-icon>
+                </button>
+                <nb-icon *ngIf="!getButtonActiveStatus('cancel')" nbTooltip="Cancel" status="basic" icon="close-circle-outline"></nb-icon>
+            </nb-action>
+        </nb-actions>
+    </div>
+    <div class="form-control-group">
+        <label for="motherLanguage" class="label">*Mother Language</label>
+        <span *ngIf="type === 'view'">
+            <b>{{ languageInformation?.motherLanguage }}</b>
+        </span>
+        <input *ngIf="type !== 'view'" name="motherLanguage" type="text" nbInput fullWidth formControlName="motherLanguage" placeholder="Mother Language" />
+    </div>
+    <div class="form-control-group">
+        <label for="nationalLanguage" class="label">*National Language</label>
+        <span *ngIf="type === 'view'">
+            <b>{{ languageInformation?.nationalLanguage }}</b>
+        </span>
+        <input *ngIf="type !== 'view'" name="nationalLanguage" type="text" nbInput fullWidth formControlName="nationalLanguage" placeholder="National Language" />
+    </div>
+    <div formArrayName="others">
+        <div *ngFor="let other of others.controls; let i = index">
+            <div class="form-control-group">
+                <label [for]="other + i" class="label">Other Language:</label>
+                <input [name]="other + i" type="text" nbInput fullWidth placeholder="Other Language" [formControlName]="i" />
+            </div>
+        </div>
+    </div>
+</form>

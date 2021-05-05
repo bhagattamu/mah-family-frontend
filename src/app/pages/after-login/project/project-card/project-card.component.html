@@ -1,0 +1,28 @@
+<nb-card>
+    <div class="details">
+        <div class="page-header">
+            <div class="title h5" (click)="onClickedProject(project._id)">
+                {{ project.projectName }}
+                <button nbButton ghost>
+                    <nb-icon icon="external-link-outline"></nb-icon>
+                </button>
+            </div>
+            <button nbButton ghost (click)="onBookmark()">
+                <nb-icon icon="bookmark-outline" [status]="project.pinned ? 'success' : 'basic'"></nb-icon>
+            </button>
+        </div>
+        <div class="status paragraph-2"><nb-icon icon="folder-outline"></nb-icon></div>
+        <div class="row">
+            <div class="col-9">
+                <span>
+                    Created Date: <b>{{ project.createdAt | date }}</b>
+                </span>
+            </div>
+            <div class="col-3 setting-button">
+                <button nbButton ghost [nbContextMenu]="menus">
+                    <nb-icon icon="settings-outline"></nb-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</nb-card>

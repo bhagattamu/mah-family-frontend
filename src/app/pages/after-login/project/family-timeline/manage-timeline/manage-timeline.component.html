@@ -1,0 +1,9 @@
+<div class="page-header">
+    <h1 class="title">Manage Timeline</h1>
+    <section class="my-auto">
+        <button nbButton hero status="primary" (click)="addTimelinePoint()">Add Timeline Point</button>
+    </section>
+</div>
+<ng-container *ngIf="timelines">
+    <app-timeline (deleteTimeline)="onDeleteTimeline($event)" [timelines]="timelines" [projectId]="projectId" [timelineProjectId]="timelineProjectId"></app-timeline>
+</ng-container>

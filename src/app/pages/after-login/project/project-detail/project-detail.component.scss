@@ -1,0 +1,14 @@
+nb-card:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+nb-card {
+    border-radius: 20px;
+    text-align: center;
+
+    nb-icon {
+        margin-right: 20px;
+        line-height: 1.5rem;
+    }
+}

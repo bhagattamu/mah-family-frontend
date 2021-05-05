@@ -1,0 +1,70 @@
+<form [formGroup]="basicInfoForm" (ngSubmit)="onSubmit(basicInfoForm)" class="form-container">
+    <div class="card-header">
+        <h6><nb-icon icon="hash-outline"></nb-icon>{{ type | uppercase }}</h6>
+        <nb-actions>
+            <nb-action>
+                <button nbButton type="button" *ngIf="getButtonActiveStatus('edit')" (click)="editForm()">
+                    <nb-icon nbTooltip="Edit" status="primary" icon="edit-2-outline"></nb-icon>
+                </button>
+                <nb-icon *ngIf="!getButtonActiveStatus('edit')" nbTooltip="Edit" status="basic" icon="edit-2-outline"></nb-icon>
+            </nb-action>
+            <nb-action>
+                <button nbButton type="button" *ngIf="getButtonActiveStatus('reset')" (click)="resetForm()">
+                    <nb-icon nbTooltip="Reset" status="primary" icon="refresh-outline"></nb-icon>
+                </button>
+                <nb-icon *ngIf="!getButtonActiveStatus('reset')" nbTooltip="Reset" status="basic" icon="refresh-outline"></nb-icon>
+            </nb-action>
+            <nb-action>
+                <button nbButton type="submit" *ngIf="getButtonActiveStatus('save')">
+                    <nb-icon nbTooltip="Save" status="primary" icon="save-outline"></nb-icon>
+                </button>
+                <nb-icon *ngIf="!getButtonActiveStatus('save')" nbTooltip="Save" status="basic" icon="save-outline"></nb-icon>
+            </nb-action>
+            <nb-action>
+                <button nbButton type="button" *ngIf="getButtonActiveStatus('cancel')" (click)="cancelForm()">
+                    <nb-icon nbTooltip="Cancel" status="primary" icon="close-circle-outline"></nb-icon>
+                </button>
+                <nb-icon *ngIf="!getButtonActiveStatus('cancel')" nbTooltip="Cancel" status="basic" icon="close-circle-outline"></nb-icon>
+            </nb-action>
+        </nb-actions>
+    </div>
+    <div class="form-control-group">
+        <div class="image-upload">
+            <label class="upload-holder" for="userPicture">
+                <div *ngIf="type !== 'view'" class="upload-button">
+                    <nb-icon icon="camera-outline"></nb-icon>
+                </div>
+                <img (click)="openImage(imageURL ? imageURL : '/assets/images/subjects/default-user-image.png')" [src]="imageURL ? imageURL : '/assets/images/subjects/default-user-image.png'" />
+            </label>
+            <input *ngIf="type !== 'view'" nbInput type="file" hidden id="userPicture" (change)="onNewImage($event)" />
+        </div>
+    </div>
+    <div class="form-control-group">
+        <label for="firstName" class="label">*First Name</label>
+        <span *ngIf="type === 'view'">
+            <b>{{ basicInformation?.firstName }}</b>
+        </span>
+        <input *ngIf="type !== 'view'" name="firstName" type="text" nbInput fullWidth formControlName="firstName" placeholder="First Name" />
+    </div>
+    <div class="form-control-group">
+        <label for="lastName" class="label">*Last Name</label>
+        <span *ngIf="type === 'view'">
+            <b>{{ basicInformation?.lastName }}</b>
+        </span>
+        <input *ngIf="type !== 'view'" name="lastName" type="text" nbInput fullWidth formControlName="lastName" placeholder="Last Name" />
+    </div>
+    <div class="form-control-group">
+        <label for="email" class="label">*Email</label>
+        <span *ngIf="type === 'view'">
+            <b>{{ basicInformation?.email }}</b>
+        </span>
+        <input *ngIf="type !== 'view'" name="email" type="text" nbInput fullWidth formControlName="email" placeholder="Email" />
+    </div>
+    <div class="form-control-group">
+        <label for="phone" class="label">*Phone</label>
+        <span *ngIf="type === 'view'">
+            <b>{{ basicInformation?.phone }}</b>
+        </span>
+        <input *ngIf="type !== 'view'" name="phone" type="text" nbInput fullWidth formControlName="phone" placeholder="Phone Number" />
+    </div>
+</form>

@@ -1,0 +1,36 @@
+<nb-card>
+    <nb-card-body>
+        <mgl-timeline>
+            <mgl-timeline-entry *ngFor="let timeline of timelines; let i = index">
+                <mgl-timeline-entry-header>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <h5>{{ timeline.title + ' - ' + timeline.subject.fullName }}</h5>
+                        </div>
+                        <div class="col-sm-12 col-md-6 my-auto">
+                            <nb-actions>
+                                <nb-action>
+                                    <button nbButton (click)="onClickEdit(timeline)"><nb-icon icon="edit-2-outline"></nb-icon></button>
+                                </nb-action>
+                                <nb-action>
+                                    <button nbButton (click)="onClickDelete(timeline)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+                                </nb-action>
+                            </nb-actions>
+                        </div>
+                    </div>
+                </mgl-timeline-entry-header>
+                <mgl-timeline-entry-content>
+                    <ng-container *ngFor="let event of timeline.events">
+                        <h6>{{ event.title + ' - ' + (event.timestamp | date: 'h:mm a') }}</h6>
+                        <p>
+                            {{ event.description }}
+                        </p>
+                    </ng-container>
+                </mgl-timeline-entry-content>
+                <mgl-timeline-entry-side>
+                    <h5>{{ timeline.date | date }}</h5>
+                </mgl-timeline-entry-side>
+            </mgl-timeline-entry>
+        </mgl-timeline>
+    </nb-card-body>
+</nb-card>

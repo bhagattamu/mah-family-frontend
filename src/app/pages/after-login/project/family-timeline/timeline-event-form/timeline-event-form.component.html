@@ -1,0 +1,53 @@
+<div [formGroup]="eventsGroup">
+    <div formArrayName="eventDatas">
+        <ng-container *ngFor="let eventData of eventDatas.controls; let i = index" [formGroupName]="i">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="title" class="label">*Event Title:</label>
+                        <input type="text" nbInput fullWidth placeholder="Enter Event Title" formControlName="title" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="type" class="label">*Event Type:</label>
+                        <input type="text" nbInput fullWidth placeholder="Enter Event Type" formControlName="type" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="timestamp" class="label">*Event Time:</label>
+                        <input type="text" nbInput fullWidth [nbTimepicker]="eventTime" placeholder="Enter Event Time" formControlName="timestamp" />
+                        <nb-timepicker #eventTime></nb-timepicker>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-control-group">
+                        <label for="emotionType" class="label">Select Emotion Type:</label>
+                        <nb-select fullWidth placeholder="Select Emotion Type" formControlName="emotionType">
+                            <nb-option *ngFor="let emotionType of emotionTypes" [value]="emotionType.value">{{ emotionType.name }}</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="description" class="label">*Event Description:</label>
+                        <textarea type="text" nbInput fullWidth placeholder="Enter Event Description" formControlName="description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button nbButton hero size="small" type="button" (click)="addEvent()">Add New Event Block <nb-icon nbSuffix icon="plus-outline"></nb-icon></button>
+                    <button nbButton hero status="danger" size="small" type="button" (click)="removeEvent(i)">Remove this block<nb-icon nbSuffix icon="close-circle-outline"></nb-icon></button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+{
+    "AUTH_MODULE": {
+        "HEADING": {
+            "LOGIN": "Login",
+            "REGISTER": "Register",
+            "REQUEST_PASSWORD": "Request Password",
+            "RESET_PASSWORD": "Reset Password",
+            "RECOVERY_CODE": "Reset Password"
+        },
+        "SUB_HEADING": {
+            "LOGIN": "Hello! Login with your email.",
+            "REGISTER": "Feel free to register. You are a step back to use this app.",
+            "REQUEST_PASSWORD": "This is sub heading of req pass",
+            "RESET_PASSWORD": "",
+            "RECOVERY_CODE": "Enter code to continue"
+        },
+        "LABEL": {
+            "EMAIL_OR_PHONE": "Email or phone:",
+            "EMAIL": "Email Address:",
+            "PASSWORD": "Password:",
+            "CONFIRM_PASSWORD": "Confirm Password:",
+            "FIRST_NAME": "First name:",
+            "LAST_NAME": "Last name:",
+            "PHONE": "Phone number:",
+            "CODE": "Recovery Code:"
+        },
+        "PLACEHOLDER": {
+            "EMAIL_OR_PHONE": "Email or phone",
+            "EMAIL": "Email Address",
+            "PASSWORD": "Password",
+            "CONFIRM_PASSWORD": "Confirm Password",
+            "FIRST_NAME": "First name",
+            "LAST_NAME": "Last name",
+            "PHONE": "Phone number",
+            "LANGUAGE": "Select Language",
+            "CODE": "Enter recovery code"
+        },
+        "BUTTON": {
+            "LOGIN": "Login",
+            "REGISTER": "Register",
+            "FORGET_PASSWORD": "Forget Password?",
+            "REQUEST_PASSWORD": "Request Password",
+            "BACK_TO_LOGIN": "Back To Login",
+            "RESEND_CODE": "Send code",
+            "CONTINUE": "Continue",
+            "RESET_PASSWORD": "Reset Password",
+            "TERMS_AND_CONDITIONS": "Terms and conditions"
+        },
+        "MESSAGE": {
+            "CODE_SENT_INFO": "You should receive code in email after 1 min",
+            "DONT_GET_CODE": "Don't receive code?",
+            "NO_ACCOUNT": "Don't have an account?",
+            "ALREADY_ACCOUNT": "Already have an account?",
+            "AGREE_TO": "Agree to"
+        }
+    },
+    "USER_MODULE": {
+        "HEADING": {
+            "CHANGE_PASSWORD": "Change Password",
+            "PROFILE": "Profile"
+        },
+        "SUB_HEADING": {
+            "CHANGE_PASSWORD": "Please enter your current password and new password inorder to change your password"
+        },
+        "LABEL": {
+            "PASSWORD": "Password: ",
+            "CURRENT_PASSWORD": "Current Password: ",
+            "CONFIRM_PASSWORD": "Confirm Password: "
+        },
+        "PLACEHOLDER": {
+            "PASSWORD": "Enter Password",
+            "CURRENT_PASSWORD": "Enter Current Password",
+            "CONFIRM_PASSWORD": "Enter Confirm Password"
+        },
+        "BUTTON": {
+            "CHANGE_PASSWORD": "Change Password"
+        },
+        "MESSAGE": ""
+    }
+}

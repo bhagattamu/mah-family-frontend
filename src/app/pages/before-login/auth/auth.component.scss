@@ -1,0 +1,31 @@
+::ng-deep {
+    .title {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        // text-align: center;
+    }
+
+    .sub-title {
+        margin-bottom: 2rem;
+        // text-align: center;
+    }
+
+    .another-action {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .forgot-password {
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+    }
+
+    .caption {
+        margin-top: 0.5rem;
+    }
+
+    .label-with-link {
+        display: flex;
+        justify-content: space-between;
+    }
+}

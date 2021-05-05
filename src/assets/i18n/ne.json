@@ -1,0 +1,41 @@
+{
+    "AUTH_MODULE": {
+        "HEADING": {
+            "LOGIN": "Login",
+            "REGISTER": "Register",
+            "REQUEST_PASSWORD": "Request Password Nepali",
+            "RESET_PASSWORD": "Reset Password"
+        },
+        "SUB_HEADING": {
+            "LOGIN": "Hello! Login with your email.",
+            "REGISTER": "Feel free to register. You are a step back to use this app.",
+            "REQUEST_PASSWORD": "This is sub heading of req pass",
+            "RESET_PASSWORD": ""
+        },
+        "LABEL": {
+            "EMAIL_OR_PHONE": "Email or phone Nepali:",
+            "EMAIL": "Email Address:",
+            "PASSWORD": "Password:",
+            "FIRST_NAME": "First name:",
+            "LAST_NAME": "Last name:",
+            "PHONE": "Phone number:"
+        },
+        "PLACEHOLDER": {
+            "EMAIL_OR_PHONE": "Email or phone",
+            "EMAIL": "Email Address",
+            "PASSWORD": "Password",
+            "FIRST_NAME": "First name",
+            "LAST_NAME": "Last name",
+            "PHONE": "Phone number",
+            "LANGUAGE": "Select Language"
+        },
+        "BUTTON": {
+            "LOGIN": "Login",
+            "REGISTER": "Register",
+            "FORGET_PASSWORD": "Forget Password?",
+            "REQUEST_PASSWORD": "Request Password",
+            "BACK_TO_LOGIN": "Back To Login"
+        },
+        "MESSAGE": {}
+    }
+}

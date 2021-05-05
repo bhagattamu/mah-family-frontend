@@ -1,0 +1,8 @@
+<div class="image-collection">
+    <div class="image-wrap" *ngFor="let picture of pictures">
+        <button nbButton ghost status="primary" shape="round" [nbContextMenu]="menuItems" (click)="openMenu(picture)">
+            <nb-icon icon="edit-outline" [options]="{ animation: { type: 'pulse' } }"></nb-icon>
+        </button>
+        <img [src]="picture" height="200px" width="200px" (click)="openImage(picture)" />
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<p class="sub-title">Create a language</p>
+<form class="form-container" [formGroup]="languageFormGroup" (ngSubmit)="onSubmit(languageFormGroup)">
+    <div class="form-control-group">
+        <label for="languageName" class="label">*Name:</label>
+        <input type="text" nbInput fullWidth [nbAutocomplete]="autoControl" placeholder="Enter language name" formControlName="languageName" (input)="onChangeLanguageName($event.target.value)" />
+        <nb-autocomplete #autoControl (selectedChange)="onSelectChange($event)">
+            <nb-option *ngFor="let option of filteredNgModelOptions$ | async" [value]="option.languageName">
+                {{ option.languageName }}
+            </nb-option>
+        </nb-autocomplete>
+        <ng-container *ngIf="submitted && LanguageFormGroup.languageName.errors as err">
+            <span *ngIf="err.required" class="caption status-danger">*Language name is a required field</span>
+        </ng-container>
+    </div>
+    <div class="form-control-group">
+        <label for="languageDescription" class="label">Description:</label>
+        <textarea type="text" nbInput fullWidth placeholder="Enter language description" formControlName="languageDescription"></textarea>
+    </div>
+    <div class="form-control-group" formGroupName="origin">
+        <label for="origin" class="label">Origin</label>
+        <app-osm-map [longitude]="this.longitude" [latitude]="this.latitude" (onChange)="onChangeLocation($event)"></app-osm-map>
+        <div class="form-control-group" formGroupName="location">
+            <div class="row form-control-group">
+                <div class="col">
+                    <label for="longitude" class="label">Longitude:</label>
+                    <input type="text" nbInput fullWidth placeholder="Enter Longitude" formControlName="longitude" (change)="onChangeCoordinateFromInput($event.target.value, 'longitude')" />
+                </div>
+                <div class="col">
+                    <label for="latitude" class="label">Latitude:</label>
+                    <input type="text" nbInput fullWidth placeholder="Enter Latitude" formControlName="latitude" (change)="onChangeCoordinateFromInput($event.target.value, 'latitude')" />
+                </div>
+            </div>
+            <div class="form-control-group">
+                <label for="address" class="label">Address:</label>
+                <input type="text" nbInput fullWidth placeholder="Enter Address" formControlName="address" />
+            </div>
+        </div>
+        <div class="form-control-group">
+            <label for="languageDescription" class="label">Description:</label>
+            <textarea type="text" nbInput fullWidth placeholder="Enter language description" formControlName="description"></textarea>
+        </div>
+    </div>
+    <button nbButton status="primary" type="submit">Save</button>
+</form>

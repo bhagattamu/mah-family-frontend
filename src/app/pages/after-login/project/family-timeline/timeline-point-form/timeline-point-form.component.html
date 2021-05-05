@@ -1,0 +1,43 @@
+<nb-card>
+    <nb-card-body>
+        <form [formGroup]="timelineFormGroup" (ngSubmit)="onSubmit(timelineFormGroup)">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="title" class="label">*Title:</label>
+                        <input type="text" nbInput fullWidth placeholder="Enter Title" formControlName="title" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="subject" class="label">*Select Subject:</label>
+                        <nb-select fullWidth placeholder="Select Subject" formControlName="subject">
+                            <nb-option *ngFor="let subject of subjects" [value]="subject._id">{{ subject.fullName }}</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="timestamp" class="label">*Date:</label>
+                        <input name="timestamp" type="text" fullWidth nbInput placeholder="Select Time" [nbDatepicker]="dateTimePicker" formControlName="date" />
+                        <nb-datepicker #dateTimePicker></nb-datepicker>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="add-event" class="label">Add Event: </label>
+                    </div>
+                </div>
+            </div>
+            <ng-container *ngIf="formType === 'NEW' || (formType === 'EDIT' && events)">
+                <app-timeline-event-form [submitted]="submitted" [eventsGroup]="eventsGroup" [events]="events"></app-timeline-event-form>
+            </ng-container>
+
+            <button nbButton hero status="primary" type="submit">{{ formType === 'NEW' ? 'Save' : 'Update' }}</button>
+        </form>
+    </nb-card-body>
+</nb-card>

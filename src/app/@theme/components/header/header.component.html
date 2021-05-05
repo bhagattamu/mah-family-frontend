@@ -1,0 +1,37 @@
+<div class="header-container">
+    <div class="logo-container">
+        <a (click)="toggleSidebar()" *ngIf="login$ | async" href="#" class="sidebar-toggle">
+            <nb-icon icon="menu-2-outline"></nb-icon>
+        </a>
+        <a class="logo" href="#" (click)="navigateHome()"> Ancestor<span>Culture</span> </a>
+    </div>
+    <!-- <nb-actions>
+        <nb-action *ngIf="login$ | async">
+            <a (click)="onNavigateProject()" [ngClass]="activeProject ? 'active' : ''" [href]="HOST_URL + '/project'">Project</a>
+        </nb-action>
+    </nb-actions> -->
+
+    <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+        <nb-option *ngFor="let theme of themes" [value]="theme.value">
+            {{ theme.name }}
+        </nb-option>
+    </nb-select>
+</div>
+<div class="header-container">
+    <nb-actions size="small">
+        <nb-action class="control-item"> Select Language </nb-action>
+        <nb-action class="control-item" *ngFor="let lang of translate.getLangs()">
+            <a (click)="onChangeLanguage(lang)" [ngClass]="userLanguage == lang ? 'active' : ''">
+                {{ lang == 'en' ? 'English' : 'नेपाली' }}
+            </a>
+        </nb-action>
+        <nb-action class="user-action" *ngIf="login$ | async">
+            <nb-user [nbContextMenu]="menuWhenLoggedIn" [name]="userData.fullName" [title]="userData.email" [picture]="profilePictureURL" [onlyPicture]="userPictureOnly"> </nb-user>
+        </nb-action>
+        <nb-action>
+            <button *ngIf="!(login$ | async)" nbButton [nbContextMenu]="menuWhenNotLogin">
+                <nb-icon icon="grid-outline" pack="eva"> </nb-icon>
+            </button>
+        </nb-action>
+    </nb-actions>
+</div>

@@ -1,0 +1,49 @@
+<nb-card [nbSpinner]="loaderService.getLoaderSubject | async" nbSpinnerStatus="info">
+    <nb-card-body>
+        <h1 class="title">{{ 'AUTH_MODULE.HEADING.LOGIN' | translate }}</h1>
+        <p class="sub-title">{{ 'AUTH_MODULE.SUB_HEADING.LOGIN' | translate }}</p>
+        <form class="form-container" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="email" class="label">{{ 'AUTH_MODULE.LABEL.EMAIL' | translate }}</label>
+                        <nb-form-field>
+                            <nb-icon nbPrefix icon="email-outline" pack="eva"></nb-icon>
+                            <input name="email" type="email" nbInput fullWidth formControlName="email" placeholder="{{ 'AUTH_MODULE.PLACEHOLDER.EMAIL' | translate }}" />
+                        </nb-form-field>
+                        <ng-container *ngIf="submitted && LoginFormGroup.email.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Email is a required field</span>
+                            <span *ngIf="err.email" class="caption status-danger">*Email is not valid</span>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <span class="label-with-link">
+                            <label class="label" for="password">{{ 'AUTH_MODULE.LABEL.PASSWORD' | translate }}</label>
+                            <a class="forgot-password caption-2" routerLink="../request-recovery">{{ 'AUTH_MODULE.BUTTON.FORGET_PASSWORD' | translate }}</a>
+                        </span>
+                        <nb-form-field>
+                            <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
+                            <nb-icon *ngIf="!eyeOpen" nbSuffix icon="eye-off-outline" (click)="toggleEye()" pack="eva"></nb-icon>
+                            <nb-icon *ngIf="eyeOpen" nbSuffix icon="eye-outline" (click)="toggleEye()" pack="eva"></nb-icon>
+                            <input [type]="eyeOpen ? 'text' : 'password'" nbInput fullWidth formControlName="password" placeholder="{{ 'AUTH_MODULE.PLACEHOLDER.PASSWORD' | translate }}" />
+                        </nb-form-field>
+                        <ng-container *ngIf="submitted && LoginFormGroup.password.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Password is a required field</span>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" nbButton fullWidth hero status="primary">
+                {{ 'AUTH_MODULE.BUTTON.LOGIN' | translate }}
+            </button>
+        </form>
+        <section class="another-action">
+            {{ 'AUTH_MODULE.MESSAGE.NO_ACCOUNT' | translate }}
+            <a routerLink="../register" class="text-link">{{ 'AUTH_MODULE.BUTTON.REGISTER' | translate }}</a>
+        </section>
+    </nb-card-body>
+</nb-card>

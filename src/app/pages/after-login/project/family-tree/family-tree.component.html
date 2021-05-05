@@ -1,0 +1,5 @@
+<div id="graph"></div>
+<div *ngIf="contextmenu == true">
+    <app-family-tree-context-menu [nodeData]="nodeData" (click)="onClick($event)" [x]="contextmenuX" [y]="contextmenuY"></app-family-tree-context-menu>
+</div>
+<app-print-family-tree-button [rootFirstName]="rootData?.firstName" [rootLastName]="rootData?.lastName" class="print-fam-tree-btn"></app-print-family-tree-button>

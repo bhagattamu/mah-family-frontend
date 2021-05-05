@@ -1,0 +1,43 @@
+<ng-container *ngIf="project">
+    <app-project-detail-card [projectId]="project._id"></app-project-detail-card>
+    <!-- <div class="row">
+        <div class="col-9">
+
+        </div>
+        <div class="col-3">
+            List of Collaborators
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="col-xxxl-3 col-md-6">
+            <nb-card (click)="navigateTo('subject')">
+                <nb-card-body [nbTooltip]="description.subject" nbTooltipPlacement="top" nbButton status="basic">
+                    <div class="page-header">
+                        <nb-icon icon="person-outline"></nb-icon>
+                        <h6 class="title">Subject</h6>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+        <div class="col-xxxl-3 col-md-6">
+            <nb-card (click)="navigateTo('family-tree')">
+                <nb-card-body [nbTooltip]="description.familyTree" nbTooltipPlacement="top" nbButton status="basic">
+                    <div class="page-header">
+                        <nb-icon icon="arrowhead-up-outline"></nb-icon>
+                        <h6 class="title">Family Tree</h6>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+        <div class="col-xxxl-3 col-md-6">
+            <nb-card (click)="navigateTo('timeline-project')">
+                <nb-card-body [nbTooltip]="description.timeline" nbTooltipPlacement="top" nbButton status="basic">
+                    <div class="page-header">
+                        <nb-icon icon="clock-outline"></nb-icon>
+                        <h6 class="title">Timeline</h6>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </div>
+</ng-container>

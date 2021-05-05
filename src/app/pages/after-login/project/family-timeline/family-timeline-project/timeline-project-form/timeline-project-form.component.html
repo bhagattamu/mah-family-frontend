@@ -1,0 +1,49 @@
+<nb-card [nbSpinner]="loaderService.getLoaderSubject | async" nbSpinnerStatus="info">
+    <nb-card-body>
+        <form [formGroup]="timelineProjectFormGroup" (ngSubmit)="onSubmit(timelineProjectFormGroup)">
+            <div class="card-header">
+                <h6>Timeline Project Form - {{ type | uppercase }}</h6>
+                <nb-actions>
+                    <nb-action>
+                        <button *ngIf="getButtonActiveStatus('new')" nbButton type="button" (click)="createNewForm()">
+                            <nb-icon nbTooltip="New" status="primary" icon="plus-circle-outline"></nb-icon>
+                        </button>
+                        <nb-icon *ngIf="!getButtonActiveStatus('new')" nbTooltip="New" status="basic" icon="plus-circle-outline"></nb-icon>
+                    </nb-action>
+                    <nb-action>
+                        <button nbButton type="button" *ngIf="getButtonActiveStatus('edit')" (click)="editForm()">
+                            <nb-icon nbTooltip="Edit" status="primary" icon="edit-2-outline"></nb-icon>
+                        </button>
+                        <nb-icon *ngIf="!getButtonActiveStatus('edit')" nbTooltip="Edit" status="basic" icon="edit-2-outline"></nb-icon>
+                    </nb-action>
+                    <nb-action>
+                        <button nbButton type="button" *ngIf="getButtonActiveStatus('reset')" (click)="resetForm()">
+                            <nb-icon nbTooltip="Reset" status="primary" icon="refresh-outline"></nb-icon>
+                        </button>
+                        <nb-icon *ngIf="!getButtonActiveStatus('reset')" nbTooltip="Reset" status="basic" icon="refresh-outline"></nb-icon>
+                    </nb-action>
+                    <nb-action>
+                        <button nbButton type="submit" *ngIf="getButtonActiveStatus('save')">
+                            <nb-icon nbTooltip="Save" status="primary" icon="save-outline"></nb-icon>
+                        </button>
+                        <nb-icon *ngIf="!getButtonActiveStatus('save')" nbTooltip="Save" status="basic" icon="save-outline"></nb-icon>
+                    </nb-action>
+                </nb-actions>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="title" class="label">*Timeline Project Title:</label>
+                        <span *ngIf="type === 'view'">
+                            <b>{{ TimelineProjectFormGroup.title.value }}</b>
+                        </span>
+                        <input type="text" *ngIf="type !== 'view'" nbInput fullWidth placeholder="Enter Title" formControlName="title" />
+                        <ng-container *ngIf="submitted && TimelineProjectFormGroup.title.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Timeline project title is a required field</span>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

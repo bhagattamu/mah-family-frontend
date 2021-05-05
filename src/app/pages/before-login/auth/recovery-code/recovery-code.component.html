@@ -1,0 +1,34 @@
+<nb-card>
+    <nb-card-body>
+        <h1 class="title">{{ 'AUTH_MODULE.HEADING.RECOVERY_CODE' | translate }}</h1>
+        <p class="sub-title">
+            {{ 'AUTH_MODULE.SUB_HEADING.RECOVERY_CODE' | translate }}
+        </p>
+        <form [formGroup]="recoveryCodeForm" (ngSubmit)="onSubmitRecoveryCodeForm(recoveryCodeForm)">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="recoveryCode" class="label">{{ 'AUTH_MODULE.LABEL.CODE' | translate }}</label>
+                        <input name="recoveryCode" nbInput fullWidth formControlName="recoveryCode" placeholder="{{ 'AUTH_MODULE.PLACEHOLDER.CODE' | translate }}" />
+                    </div>
+                </div>
+            </div>
+
+            <button nbButton fullWidth hero status="primary" type="submit">
+                {{ 'AUTH_MODULE.BUTTON.CONTINUE' | translate }}
+            </button>
+        </form>
+        <section class="another-action">
+            {{ 'AUTH_MODULE.MESSAGE.DONT_GET_CODE' | translate }}
+            <button nbButton (click)="onResendCode()" hero status="primary">
+                {{ 'AUTH_MODULE.BUTTON.RESEND_CODE' | translate }}
+            </button>
+        </section>
+        <section class="another-action" *ngIf="resendCode">
+            {{ 'AUTH_MODULE.MESSAGE.CODE_SENT_INFO' | translate }}
+        </section>
+        <section class="another-action">
+            <a routerLink="../login" class="text-link">{{ 'AUTH_MODULE.BUTTON.BACK_TO_LOGIN' | translate }}</a>
+        </section>
+    </nb-card-body>
+</nb-card>

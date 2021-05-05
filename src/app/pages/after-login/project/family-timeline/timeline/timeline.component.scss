@@ -1,0 +1,12 @@
+@import '../../../../../@theme/styles/themes.scss';
+
+@include nb-install-component {
+    ::ng-deep {
+        mgl-timeline-entry .mgl-timeline-entry-card .mgl-timeline-entry-card-header {
+            background-color: nb-theme(timeline-background-title) !important;
+        }
+        mgl-timeline-entry .mgl-timeline-entry-card {
+            background-color: nb-theme(timeline-background-description) !important;
+        }
+    }
+}

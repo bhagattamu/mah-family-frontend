@@ -1,0 +1,28 @@
+<div class="page-header">
+    <h1 class="title">Project</h1>
+</div>
+<app-add-new-project [type]="formType" [project]="formData" (onCreate)="createProject($event)" (onUpdate)="updateProject($event)"></app-add-new-project>
+<nb-card>
+    <nb-card-body>
+        <h6 class="title">List of projects</h6>
+        <table [nbTreeGrid]="data">
+            <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="columns"></tr>
+            <tr [clickToToggle]="false" nbTreeGridRow *nbTreeGridRowDef="let row; columns: columns" [ngClass]="row.data.id === formData?.id ? 'active' : ''" (click)="clickRow(row.data)"></tr>
+            <ng-container *ngFor="let column of columns; let i = index" [nbTreeGridColumnDef]="column">
+                <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>{{ columnNames[i] }}</th>
+                <ng-template [ngIf]="column === 'action'">
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                        <actions>
+                            <nb-action [nbContextMenu]="menuItems" (click)="openMenu(row.data)">
+                                <nb-icon icon="more-vertical-outline"></nb-icon>
+                            </nb-action>
+                        </actions>
+                    </td>
+                </ng-template>
+                <ng-template [ngIf]="column !== 'action'">
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">{{ row.data[column] || '-' }}</td>
+                </ng-template>
+            </ng-container>
+        </table>
+    </nb-card-body>
+</nb-card>

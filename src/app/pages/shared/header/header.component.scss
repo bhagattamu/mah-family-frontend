@@ -1,0 +1,44 @@
+:host {
+    width: 100%;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand-logo {
+    text-decoration: none;
+}
+
+nb-action {
+    cursor: pointer;
+}
+
+nb-action a {
+    text-decoration: none;
+}
+
+nb-action a:hover,
+a.active {
+    background-color: transparent;
+    border-color: #418041;
+    color: #418041 !important;
+}
+
+.logo {
+    border-left: 0 !important;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    text-decoration: none;
+
+    span {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        padding-left: 5px;
+        color: #418041;
+        font-weight: bold;
+    }
+}

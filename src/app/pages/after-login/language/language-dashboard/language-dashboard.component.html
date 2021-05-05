@@ -1,0 +1,20 @@
+<div class="page-header">
+    <h1 class="title">Language</h1>
+    <nb-actions>
+        <nb-action>
+            <button nbButton status="primary" *ngIf="!activeForm" (click)="onAdd()">Add</button>
+            <button nbButton status="primary" *ngIf="activeForm" (click)="onCancel()">Cancel</button>
+        </nb-action>
+    </nb-actions>
+</div>
+<app-language-form *ngIf="activeForm" (onCreate)="onCreateLanguage($event)"></app-language-form>
+
+<h6 class="title">Forked Languages</h6>
+<nb-card *ngFor="let forkedLanguage of forkedLanguages">
+    <nb-card-body>
+        <p>
+            <b>{{ forkedLanguage.language.languageName }}</b>
+        </p>
+        <p>{{ forkedLanguage.language.languageDescription }}</p>
+    </nb-card-body>
+</nb-card>

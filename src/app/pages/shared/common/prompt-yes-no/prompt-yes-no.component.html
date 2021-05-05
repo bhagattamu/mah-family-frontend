@@ -1,0 +1,15 @@
+<nb-card>
+    <nb-card-body>
+        <h6>{{ question }}</h6>
+    </nb-card-body>
+    <nb-card-footer>
+        <nb-actions>
+            <nb-action>
+                <button nbButton (click)="onAnswer(true)">Yes</button>
+            </nb-action>
+            <nb-action>
+                <button nbButton (click)="onAnswer(false)">No</button>
+            </nb-action>
+        </nb-actions>
+    </nb-card-footer>
+</nb-card>

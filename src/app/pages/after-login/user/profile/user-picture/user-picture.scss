@@ -1,0 +1,30 @@
+.image-collection {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-wrap {
+    margin: 10px;
+    position: relative;
+    background: rgb(255, 255, 255, 0.6);
+    border-radius: 20px;
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+.image-wrap:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+img {
+    border-radius: 20px;
+}
+
+.opacity-9 {
+    opacity: 1 !important;
+}
