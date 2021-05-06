@@ -10,7 +10,7 @@ export class RoleGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | boolean {
         const definedRole = route.data.role;
         const currentUser = this.authService.getUserData();
-        if (currentUser && currentUser.roles && currentUser.roles.some((role: string) => definedRole.includes(role))) {
+        if (currentUser && !currentUser.autoPassword && currentUser.roles && currentUser.roles.some((role: string) => definedRole.includes(role))) {
             return true;
         }
         return false;
