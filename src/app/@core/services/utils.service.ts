@@ -7,7 +7,7 @@ export class UtilsService {
     constructor(private toastrService: NbToastrService, private router: Router) {}
 
     showToast(statusType: string, message: string) {
-        this.toastrService.show(statusType, message, { limit: 2, position: NbGlobalLogicalPosition.BOTTOM_START, status: <NbComponentStatus>statusType, destroyByClick: true });
+        this.toastrService.show(statusType, message, { limit: 2, position: NbGlobalLogicalPosition.BOTTOM_START, status: <NbComponentStatus>statusType, destroyByClick: true, duration: 3000 });
     }
 
     navigateToLogin() {

@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
                 if (res && res.success) {
                     this.authService.setAccessToken(res.data.accessToken);
                     this.authService.setUserData(res.data);
-                    this.utilsService.showToast(SUCCESS, res.message[0]);
                     window.location.reload();
                 } else {
                     this.utilsService.showToast(WARNING, 'Failed');

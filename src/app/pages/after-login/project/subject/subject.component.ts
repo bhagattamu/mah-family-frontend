@@ -52,7 +52,6 @@ export class SubjectComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.projectService.initSidenav(this.projectId);
         this.populateProjects();
         this.initMenu();
     }

@@ -49,7 +49,7 @@ export class ProjectService {
         if (projectId !== this.projectId || first) {
             if (projectId) {
                 this.projectId = projectId;
-                this.sidebarService.addProjectMenu(projectId);
+                this.sidebarService.sendProjectId(projectId);
             }
         }
     }
