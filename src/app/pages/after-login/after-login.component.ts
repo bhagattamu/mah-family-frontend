@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbDialogService, NbMenuItem, NbSidebarService } from '@nebular/theme';
-import { delay } from 'rxjs/operators';
-import { SidebarService } from 'src/app/@core/services';
+import { adminMenus, commonMenus, MENU_KEY, projectMenus } from 'src/app/@core/constants/menu.constant';
+import { LangTranslateService, SidebarService } from 'src/app/@core/services';
 import { AuthService } from 'src/app/@core/services/auth.service';
 import { UserChangePasswordComponent } from './user/change-password/change-password.component';
 
@@ -10,42 +10,48 @@ import { UserChangePasswordComponent } from './user/change-password/change-passw
     selector: 'app-after-login',
     template: `
         <ngx-one-column-layout>
-            <nb-menu [items]="sideNavMenus"></nb-menu>
-            <router-outlet></router-outlet>
+            <ng-container *ngIf="!autoPassword">
+                <nb-menu [items]="sideNavMenus"></nb-menu>
+                <router-outlet></router-outlet>
+            </ng-container>
         </ngx-one-column-layout>
     `,
     styleUrls: ['./after-login.component.scss']
 })
-export class AfterLoginComponent implements OnInit {
+export class AfterLoginComponent implements OnInit, AfterViewInit {
     autoPassword: boolean;
-    sideNavMenus: Array<NbMenuItem> = [{ title: 'Hell' }];
-    constructor(private readonly authService: AuthService, private readonly dialogService: NbDialogService, private readonly router: Router, private sidebarService: SidebarService, private nbSidebarService: NbSidebarService) {
+    sideNavMenus: Array<NbMenuItem>;
+    constructor(private readonly authService: AuthService, private readonly dialogService: NbDialogService, private readonly router: Router, private sidebarService: SidebarService, private nbSidebarService: NbSidebarService, private langTranslateService: LangTranslateService) {
         this.autoPassword = this.authService.getUserData().autoPassword;
     }
 
     ngOnInit(): void {
+        this.initSideNavMenu();
+    }
+
+    ngAfterViewInit(): void {
         if (this.autoPassword) {
             this.openChangePassword();
-        } else {
-            this.initSideNavMenu();
         }
     }
 
     initSideNavMenu(): void {
-        this.sidebarService.sidebarMenus$.pipe(delay(0)).subscribe(
-            (menuItems) => {
-                console.log(menuItems);
-                this.sideNavMenus = [...menuItems['admin'], ...(menuItems['project'].length ? menuItems['project'] : [{ title: 'Project', link: '/project', icon: 'folder-outline' }]), ...menuItems['common']];
-                if (this.sideNavMenus.length) {
-                    this.nbSidebarService.expand();
-                } else {
-                    this.nbSidebarService.collapse();
-                }
-            },
-            (err) => {
-                console.log(err);
-            }
-        );
+        this.sideNavMenus = [...adminMenus, ...projectMenus, ...commonMenus];
+        this.langTranslateService.getCurrentLangRequest().subscribe((language) => {
+            this.langTranslateService.translateMenu(language, this.sideNavMenus);
+        });
+        if (this.authService.isAdmin()) {
+            this.sidebarService.changeMenuStatus(this.sideNavMenus, MENU_KEY.ADMIN, true);
+        } else {
+            this.sidebarService.changeMenuStatus(this.sideNavMenus, MENU_KEY.ADMIN, false);
+        }
+        this.sidebarService.menuKeySubject$.subscribe(({ key, status }) => {
+            this.sidebarService.changeMenuStatus(this.sideNavMenus, key, status);
+        });
+        this.sidebarService.projectSubject$.subscribe((projectId) => {
+            this.sidebarService.changeMenuStatus(this.sideNavMenus, MENU_KEY.PROJECT_WITHOUT_CHILD, false);
+            this.sidebarService.replaceProjectLink(this.sideNavMenus, projectId);
+        });
     }
 
     openChangePassword(): void {
@@ -58,6 +64,7 @@ export class AfterLoginComponent implements OnInit {
                     this.autoPassword = false;
                     this.authService.setUserData(res.data);
                     this.router.navigate(['/u/dashboard']);
+                    this.initSideNavMenu();
                 }
             }
         });

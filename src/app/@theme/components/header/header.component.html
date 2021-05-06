@@ -5,11 +5,11 @@
         </a>
         <a class="logo" href="#" (click)="navigateHome()"> Ancestor<span>Culture</span> </a>
     </div>
-    <!-- <nb-actions>
+    <nb-actions>
         <nb-action *ngIf="login$ | async">
             <a (click)="onNavigateProject()" [ngClass]="activeProject ? 'active' : ''" [href]="HOST_URL + '/project'">Project</a>
         </nb-action>
-    </nb-actions> -->
+    </nb-actions>
 
     <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
         <nb-option *ngFor="let theme of themes" [value]="theme.value">

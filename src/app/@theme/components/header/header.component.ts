@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbDialogService, NbMediaBreakpointsService, NbMenuItem, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
-
-import { LayoutService } from '../../../@core/utils';
+import { LayoutService } from 'src/app/@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { AuthService } from 'src/app/@core/services/auth.service';
-import { menuWhenLoggedIn, menuWhenNotLogin } from 'src/app/@core/constants/menu.constant';
+import { menuWhenLoggedIn, menuWhenNotLogin, MENU_KEY } from 'src/app/@core/constants/menu.constant';
 import { SUCCESS } from 'src/app/@core/constants/toast.constant';
 import { LangTranslateService, SidebarService, UtilsService } from 'src/app/@core/services';
 import { Event, NavigationEnd, Router } from '@angular/router';
@@ -50,9 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
     ];
 
-    currentTheme = 'default';
-
-    userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+    currentTheme = 'corporate';
 
     constructor(
         public translate: TranslateService,
@@ -69,7 +66,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         private langTranslateService: LangTranslateService
     ) {
         this.login$ = this.authService.getLoginStatus();
-        this.menuService.onItemClick().subscribe((event) => this.menuClickHandler(event.item.title));
+        this.menuService.onItemClick().subscribe((event) => this.menuClickHandler(event.item));
         this.login$.subscribe((res) => {
             if (res) {
                 this.userData = this.authService.getUserData();
@@ -91,9 +88,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
                         if (event instanceof NavigationEnd) {
                             if (event.url.includes('/project')) {
                                 this.activeProject = true;
+                                if (event.url === '/project') {
+                                    this.sidebarService.sendChangeMenuStatus(MENU_KEY.PROJECT_WITHOUT_CHILD, true);
+                                } else {
+                                    this.sidebarService.sendChangeMenuStatus(MENU_KEY.PROJECT, true);
+                                }
                             } else {
-                                this.sidebarService.removeProjectMenu();
-                                this.activeProject = false;
+                                this.sidebarService.sendChangeMenuStatus(MENU_KEY.PROJECT_WITHOUT_CHILD, false);
+                                this.sidebarService.sendChangeMenuStatus(MENU_KEY.PROJECT, false);
                             }
                         }
                     });
@@ -102,9 +104,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.initSideNav();
-        this.userLanguage = this.authService.getUserLang();
+        this.userLanguage = this.authService.getUserLang() ?? 'en';
+        this.authService.setUserLang(this.userLanguage);
         this.listenProfileChange();
+        this.listenLanguageChange();
         this.currentTheme = this.themeService.currentTheme;
 
         const { xl } = this.breakpointService.getBreakpointsMap();
@@ -130,6 +133,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.destroy$.complete();
     }
 
+    listenLanguageChange(): void {
+        this.langTranslateService.getCurrentLangRequest().subscribe((language) => {
+            this.userLanguage = language;
+            this.langTranslateService.translateMenu(language, this.menuWhenLoggedIn);
+            this.langTranslateService.translateMenu(language, this.menuWhenNotLogin);
+        });
+    }
+
     changeTheme(themeName: string) {
         this.themeService.changeTheme(themeName);
     }
@@ -145,41 +156,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
         return false;
     }
 
-    initSideNav(): void {
-        this.sidebarService.sidebarMenus$.subscribe(
-            (menuItems) => {
-                if (menuItems['admin']?.length || menuItems['project']?.length) {
-                    this.hasSideNavMenu = true;
-                } else {
-                    this.hasSideNavMenu = false;
-                }
-            },
-            (err) => {
-                this.hasSideNavMenu = false;
-            }
-        );
-    }
-
-    menuClickHandler(menuTitle: string): void {
-        switch (menuTitle) {
-            case 'Login':
+    menuClickHandler(menuItem: any): void {
+        switch (menuItem.key) {
+            case MENU_KEY.LOGIN:
                 this.router.navigate(['/auth/login']);
                 break;
-            case 'Register':
+            case MENU_KEY.REGISTER:
                 this.router.navigate(['/auth/register']);
                 break;
-            case 'Logout':
+            case MENU_KEY.LOGOUT:
                 this.authService.logoutUser();
                 this.utilsService.showToast(SUCCESS, 'Logout successfully.');
                 break;
-            case 'Change Password':
+            case MENU_KEY.CHANGE_PASSWORD:
                 const autoPassword = this.authService.getUserData().autoPassword;
                 this.dialogService.open(UserChangePasswordComponent, {
                     closeOnBackdropClick: !autoPassword,
                     closeOnEsc: !autoPassword
                 });
                 break;
-            case 'Profile':
+            case MENU_KEY.PROFILE:
                 this.router.navigate(['/user/profile']);
                 break;
             default:
@@ -207,7 +203,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     onChangeLanguage(lang: any) {
         this.authService.setUserLang(lang);
         this.langTranslateService.sendChangeRequest(lang);
-        this.userLanguage = lang;
     }
 
     onNavigateProject(): void {

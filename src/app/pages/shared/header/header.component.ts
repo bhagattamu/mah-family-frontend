@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                         if (event.url.includes('/project')) {
                             this.activeProject = true;
                         } else {
-                            this.sidebarService.removeProjectMenu();
+                            // this.sidebarService.removeProjectMenu();
                             this.activeProject = false;
                         }
                     }
@@ -69,7 +69,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.initSideNav();
         this.userLanguage = this.authService.getUserLang();
         this.listenProfileChange();
         // this.toggleTheme('dark');
@@ -79,21 +78,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (this.routerEventSubscription) {
             this.routerEventSubscription.unsubscribe();
         }
-    }
-
-    initSideNav(): void {
-        this.sidebarService.sidebarMenus$.subscribe(
-            (menuItems) => {
-                if (menuItems['admin']?.length || menuItems['project']?.length) {
-                    this.hasSideMenu = true;
-                } else {
-                    this.hasSideMenu = false;
-                }
-            },
-            (err) => {
-                this.hasSideMenu = false;
-            }
-        );
     }
 
     listenProfileChange(): void {
