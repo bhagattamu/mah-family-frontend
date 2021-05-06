@@ -10,10 +10,8 @@ import { UserChangePasswordComponent } from './user/change-password/change-passw
     selector: 'app-after-login',
     template: `
         <ngx-one-column-layout>
-            <ng-container *ngIf="!autoPassword">
-                <nb-menu [items]="sideNavMenus"></nb-menu>
-                <router-outlet></router-outlet>
-            </ng-container>
+            <nb-menu [items]="sideNavMenus"></nb-menu>
+            <router-outlet></router-outlet>
         </ngx-one-column-layout>
     `,
     styleUrls: ['./after-login.component.scss']
