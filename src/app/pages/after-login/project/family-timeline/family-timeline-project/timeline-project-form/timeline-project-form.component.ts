@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SUCCESS, WARNING } from 'src/app/@core/constants/toast.constant';
 import { LoaderService, UtilsService } from 'src/app/@core/services';
@@ -13,7 +13,7 @@ enum FormType {
     selector: 'app-timeline-project-form',
     templateUrl: './timeline-project-form.component.html'
 })
-export class TimelineProjectFormComponent implements OnInit, OnDestroy, OnChanges {
+export class TimelineProjectFormComponent implements OnInit, OnChanges {
     @Input() type: string;
     @Input() projectId: string;
     @Input() timelineProject: any;
@@ -48,15 +48,12 @@ export class TimelineProjectFormComponent implements OnInit, OnDestroy, OnChange
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes['timelineProject']);
         if (changes['timelineProject'].currentValue) {
             this.timelineProject = changes['timelineProject'].currentValue;
             this.resetForm();
             this.makeMenuActive('view');
         }
     }
-
-    ngOnDestroy(): void {}
 
     makeMenuActive(type: string): void {
         this.type = type;
