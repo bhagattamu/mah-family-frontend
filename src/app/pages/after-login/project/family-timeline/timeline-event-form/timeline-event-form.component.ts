@@ -3,7 +3,20 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-timeline-event-form',
-    templateUrl: './timeline-event-form.component.html'
+    templateUrl: './timeline-event-form.component.html',
+    styles: [
+        `
+            .event {
+                margin-bottom: 20px;
+                border: 1px solid #edf1f7;
+                padding: 15px;
+
+                & & {
+                    margin-bottom: 0;
+                }
+            }
+        `
+    ]
 })
 export class TimelineEventFormComponent implements OnInit {
     @Input() submitted: boolean;

@@ -5,6 +5,7 @@ import { SUCCESS, WARNING } from 'src/app/@core/constants/toast.constant';
 import { SubjectService } from 'src/app/@core/services/subject.service';
 import { UtilsService } from 'src/app/@core/services/utils.service';
 import { GENDER } from 'src/app/@core/constants/gender.constant';
+import { LoaderService } from 'src/app/@core/services';
 
 @Component({
     selector: 'app-add-new-subject',
@@ -17,10 +18,11 @@ export class AddNewSubjectComponent implements OnInit {
     genders: Array<any>;
     imageURL: any;
     message: string;
+    submitted: boolean;
     // fruits = ['Nepal', 'India', 'Bangladesh'];
     // showList: boolean = true;
 
-    constructor(private fb: FormBuilder, private ref: NbDialogRef<AddNewSubjectComponent>, private subjectService: SubjectService, private utilsService: UtilsService) {
+    constructor(private fb: FormBuilder, private ref: NbDialogRef<AddNewSubjectComponent>, private subjectService: SubjectService, private utilsService: UtilsService, public loaderService: LoaderService) {
         this.genders = GENDER;
     }
 
@@ -30,7 +32,7 @@ export class AddNewSubjectComponent implements OnInit {
 
     buildNewSubjectForm(): void {
         this.newSubjectForm = this.fb.group({
-            projectId: ['', [Validators.required]],
+            projectId: [this.projectId, [Validators.required]],
             firstName: ['', [Validators.required]],
             lastName: ['', [Validators.required]],
             gender: ['', [Validators.required]],
@@ -75,10 +77,11 @@ export class AddNewSubjectComponent implements OnInit {
     // }
 
     onSaveNewSubject({ valid, value }): void {
-        if (!valid && !this.projectId) {
+        if (!valid || !this.projectId) {
+            this.submitted = true;
             return;
         }
-        value.projectId = this.projectId;
+        this.loaderService.startLoader();
         let formData: any;
         let hasFormData: boolean;
         if (this.SubjectForm.userPicture.value) {
@@ -97,6 +100,8 @@ export class AddNewSubjectComponent implements OnInit {
         }
         this.subjectService.createSubject(formData, hasFormData).subscribe(
             (res) => {
+                this.submitted = false;
+                this.loaderService.stopLoader();
                 if (res && res.success) {
                     this.ref.close(res);
                     this.utilsService.showToast(SUCCESS, 'Successfully created subject.');
@@ -105,6 +110,8 @@ export class AddNewSubjectComponent implements OnInit {
                 }
             },
             (err) => {
+                this.loaderService.stopLoader();
+                this.submitted = false;
                 this.utilsService.showToast(WARNING, 'Failed to create subject.');
             }
         );

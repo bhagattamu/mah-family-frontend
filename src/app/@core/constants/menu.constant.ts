@@ -26,7 +26,11 @@ export const MENU_KEY = {
     PROJECT_DETAIL: 'PROJECT_DETAIL',
     SUBJECT: 'SUBJECT',
     FAMILY_TREE: 'FAMILY_TREE',
-    FAMILY_TIMELINE: 'FAMILY_TIMELINE'
+    FAMILY_TIMELINE: 'FAMILY_TIMELINE',
+    BASIC_INFORMATION: 'BASIC_INFORMATION',
+    FAMILY_INFORMATION: 'FAMILY_INFORMATION',
+    LANGUAGE_INFORMATION: 'LANGUAGE_INFORMATION',
+    PICTURES: 'PICTURES'
 };
 
 const ENGLISH_TITLE = {
@@ -49,7 +53,11 @@ const ENGLISH_TITLE = {
     [MENU_KEY.PROJECT_DETAIL]: 'Detail',
     [MENU_KEY.SUBJECT]: 'Subject',
     [MENU_KEY.FAMILY_TREE]: 'Family Tree',
-    [MENU_KEY.FAMILY_TIMELINE]: 'Family Timeline'
+    [MENU_KEY.FAMILY_TIMELINE]: 'Family Timeline',
+    [MENU_KEY.BASIC_INFORMATION]: 'Basic Information',
+    [MENU_KEY.FAMILY_INFORMATION]: 'Family Information',
+    [MENU_KEY.LANGUAGE_INFORMATION]: 'Language Information',
+    [MENU_KEY.PICTURES]: 'Pictures'
 };
 
 const NEPALI_TITLE = {
@@ -72,7 +80,11 @@ const NEPALI_TITLE = {
     [MENU_KEY.PROJECT_DETAIL]: 'विवरण',
     [MENU_KEY.SUBJECT]: 'व्यक्ति',
     [MENU_KEY.FAMILY_TREE]: 'वंश नक्शा',
-    [MENU_KEY.FAMILY_TIMELINE]: 'परिवार समयरेखा'
+    [MENU_KEY.FAMILY_TIMELINE]: 'परिवार समयरेखा',
+    [MENU_KEY.BASIC_INFORMATION]: 'Basic Information N',
+    [MENU_KEY.FAMILY_INFORMATION]: 'Family Information N',
+    [MENU_KEY.LANGUAGE_INFORMATION]: 'Language Information N',
+    [MENU_KEY.PICTURES]: 'Pictures N'
 };
 
 export const validProjectLink = {

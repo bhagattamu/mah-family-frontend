@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 import { GENDER } from 'src/app/@core/constants/gender.constant';
 import { SUCCESS, WARNING } from 'src/app/@core/constants/toast.constant';
+import { LoaderService } from 'src/app/@core/services';
 import { SubjectService } from 'src/app/@core/services/subject.service';
 import { UtilsService } from 'src/app/@core/services/utils.service';
 
@@ -18,8 +19,9 @@ export class AddNewChildrenComponent implements OnInit {
     genders: Array<any>;
     parents: Array<any>;
     imageURL: any;
+    submitted: boolean;
 
-    constructor(private readonly ref: NbDialogRef<AddNewChildrenComponent>, private readonly fb: FormBuilder, private readonly subjectService: SubjectService, private readonly utilsService: UtilsService) {
+    constructor(private readonly ref: NbDialogRef<AddNewChildrenComponent>, private readonly fb: FormBuilder, private readonly subjectService: SubjectService, private readonly utilsService: UtilsService, public loaderService: LoaderService) {
         this.genders = GENDER;
     }
 
@@ -30,8 +32,8 @@ export class AddNewChildrenComponent implements OnInit {
 
     buildChildForm(): void {
         this.newChildForm = this.fb.group({
-            projectId: [''],
-            parent: [''],
+            projectId: [this.projectId, [Validators.required]],
+            parent: ['', [Validators.required]],
             firstName: ['', [Validators.required]],
             lastName: ['', [Validators.required]],
             gender: ['', [Validators.required]],
@@ -57,6 +59,9 @@ export class AddNewChildrenComponent implements OnInit {
         this.subjectService.getSubjectById(this.subject?._id).subscribe((res) => {
             if (res && res.success) {
                 this.parents = res.data.marriages;
+                this.newChildForm.patchValue({
+                    parent: this.parents[0].spouse._id
+                });
             }
         });
     }
@@ -77,9 +82,10 @@ export class AddNewChildrenComponent implements OnInit {
 
     onSaveNewChild({ value, valid }): void {
         if (!valid) {
+            this.submitted = true;
             return;
         }
-        value.projectId = this.projectId;
+        this.loaderService.startLoader();
         let formData: any;
         let hasFormData: boolean;
         if (this.ChildForm.userPicture.value) {
@@ -99,6 +105,7 @@ export class AddNewChildrenComponent implements OnInit {
 
         this.subjectService.createChild(formData, hasFormData, this.subject?._id).subscribe(
             (res) => {
+                this.loaderService.stopLoader();
                 if (res && res.success) {
                     this.ref.close(res);
                     this.utilsService.showToast(SUCCESS, 'Successfully created child.');
@@ -107,6 +114,7 @@ export class AddNewChildrenComponent implements OnInit {
                 }
             },
             (err) => {
+                this.loaderService.stopLoader();
                 this.utilsService.showToast(WARNING, 'Failed to create child.');
             }
         );

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
+import { SUCCESS, WARNING } from 'src/app/@core/constants/toast.constant';
+import { LoaderService, UtilsService } from 'src/app/@core/services';
 import { AuthService } from 'src/app/@core/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { ViewPictureComponent } from '../user-picture/view-picture/view-picture.component';
@@ -34,7 +36,7 @@ export class BasicInformationComponent implements OnInit {
     ];
     imageURL: any;
 
-    constructor(private readonly fb: FormBuilder, private readonly dialogService: NbDialogService, private readonly authService: AuthService) {}
+    constructor(private readonly fb: FormBuilder, private readonly dialogService: NbDialogService, private readonly authService: AuthService, public loaderService: LoaderService, private utilsService: UtilsService) {}
 
     ngOnInit(): void {
         this.getBasicInformation();
@@ -126,6 +128,7 @@ export class BasicInformationComponent implements OnInit {
 
     cancelForm(): void {
         this.type = 'view';
+        this.resetForm();
         this.basicInfoForm.disable();
         this.makeMenuActive('view');
         this.imageURL = this.basicInformation.profileImageURL ? `${environment.API_HOST}/files/user-picture/${this.basicInformation.id}/${this.basicInformation.profileImageURL}` : '/assets/images/subjects/default-user-image.png';
@@ -143,8 +146,10 @@ export class BasicInformationComponent implements OnInit {
 
     onSubmit({ value, valid }): void {
         if (!valid) {
+            this.submitted = true;
             return;
         }
+        this.loaderService.startLoader();
         let formData: any;
         let hasFormData: boolean;
         if (this.BasicInfoForm.userPicture.value) {
@@ -158,15 +163,24 @@ export class BasicInformationComponent implements OnInit {
             formData = { ...value };
         }
 
-        this.authService.updateUserBasicInfo(formData, hasFormData).subscribe((res) => {
-            if (res && res.success) {
-                this.authService.setUserData({ ...this.authService.getUserData(), ...res.data });
-                this.basicInformation = res.data;
-                this.type = 'view';
-                this.submitted = false;
-                this.makeMenuActive(this.type);
-                this.authService.setProfileURL();
+        this.authService.updateUserBasicInfo(formData, hasFormData).subscribe(
+            (res) => {
+                this.loaderService.stopLoader();
+                if (res && res.success) {
+                    this.submitted = false;
+                    this.authService.setUserData({ ...this.authService.getUserData(), ...res.data });
+                    this.basicInformation = res.data;
+                    this.type = 'view';
+                    this.submitted = false;
+                    this.makeMenuActive(this.type);
+                    this.authService.setProfileURL();
+                    this.utilsService.showToast(SUCCESS, res.message[0]);
+                }
+            },
+            (err) => {
+                this.loaderService.stopLoader();
+                this.utilsService.showToast(WARNING, err.message);
             }
-        });
+        );
     }
 }

@@ -44,6 +44,18 @@
                         </nb-actions>
                     </td>
                 </ng-template>
+                <ng-template [ngIf]="column === 'address'">
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                        <div>
+                            <span nbTooltip="Country" nbTooltipPlacement="left">{{ row.data['country'] }}</span>
+                            <span nbTooltip="Address" nbTooltipPlacement="left">
+                                <small>
+                                    <i>{{ row.data[column] || '-' }}</i>
+                                </small>
+                            </span>
+                        </div>
+                    </td>
+                </ng-template>
                 <ng-template [ngIf]="column !== 'action' || column !== 'firstName'">
                     <td nbTreeGridCell *nbTreeGridCellDef="let row">{{ row.data[column] || '-' }}</td>
                 </ng-template>

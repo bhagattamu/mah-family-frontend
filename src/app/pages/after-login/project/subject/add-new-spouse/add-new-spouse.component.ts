@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 import { GENDER } from 'src/app/@core/constants/gender.constant';
 import { SUCCESS, WARNING } from 'src/app/@core/constants/toast.constant';
+import { LoaderService } from 'src/app/@core/services';
 import { SubjectService } from 'src/app/@core/services/subject.service';
 import { UtilsService } from 'src/app/@core/services/utils.service';
 
@@ -17,7 +18,8 @@ export class AddNewSpouseComponent implements OnInit {
     newSpouseForm: FormGroup;
     genders: Array<any>;
     imageURL: any;
-    constructor(private readonly ref: NbDialogRef<AddNewSpouseComponent>, private readonly fb: FormBuilder, private subjectService: SubjectService, private utilsService: UtilsService) {
+    submitted: boolean;
+    constructor(private readonly ref: NbDialogRef<AddNewSpouseComponent>, private readonly fb: FormBuilder, private subjectService: SubjectService, private utilsService: UtilsService, public loaderService: LoaderService) {
         this.genders = GENDER;
     }
 
@@ -65,8 +67,10 @@ export class AddNewSpouseComponent implements OnInit {
 
     onSaveNewSpouse({ value, valid }): void {
         if (!valid) {
+            this.submitted = true;
             return;
         }
+        this.loaderService.startLoader();
         value.projectId = this.projectId;
         let formData: any;
         let hasFormData: boolean;
@@ -86,6 +90,7 @@ export class AddNewSpouseComponent implements OnInit {
         }
         this.subjectService.createSpouse(formData, hasFormData, this.subject?._id).subscribe(
             (res) => {
+                this.loaderService.stopLoader();
                 if (res && res.success) {
                     this.ref.close(res);
                     this.utilsService.showToast(SUCCESS, 'Successfully created spouse.');
@@ -94,6 +99,7 @@ export class AddNewSpouseComponent implements OnInit {
                 }
             },
             (err) => {
+                this.loaderService.stopLoader();
                 this.utilsService.showToast(WARNING, 'Failed to create subject.');
             }
         );

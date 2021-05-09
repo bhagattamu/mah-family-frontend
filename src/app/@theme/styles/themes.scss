@@ -20,7 +20,8 @@ $nb-themes: nb-register-theme(
         slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
         slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
         timeline-background-title: #f7f9fc,
-        timeline-background-description: #f7f9fc
+        timeline-background-description: #f7f9fc,
+        input-readonly-text-color: #222b45
     ),
     default,
     default
@@ -43,7 +44,8 @@ $nb-themes: nb-register-theme(
         slide-out-shadow-color: 2px 0 3px #29157a,
         slide-out-shadow-color-rtl: -2px 0 3px #29157a,
         timeline-background-title: #252547,
-        timeline-background-description: #252547
+        timeline-background-description: #252547,
+        input-readonly-text-color: #ffffff
     ),
     cosmic,
     cosmic
@@ -66,7 +68,8 @@ $nb-themes: nb-register-theme(
         slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
         slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
         timeline-background-title: linear-gradient(270deg, #edf1f7 0%, #e4e9f2 100%),
-        timeline-background-description: linear-gradient(270deg, #edf1f7 0%, #e4e9f2 100%)
+        timeline-background-description: linear-gradient(270deg, #edf1f7 0%, #e4e9f2 100%),
+        input-readonly-text-color: #222b45
     ),
     corporate,
     corporate
@@ -89,7 +92,8 @@ $nb-themes: nb-register-theme(
         slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
         slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
         timeline-background-title: #151a30,
-        timeline-background-description: #1b223f
+        timeline-background-description: #1b223f,
+        input-readonly-text-color: #ffffff
     ),
     dark,
     dark

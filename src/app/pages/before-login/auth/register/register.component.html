@@ -11,7 +11,7 @@
                         <label for="firstName" class="label">{{ 'AUTH_MODULE.LABEL.FIRST_NAME' | translate }}</label>
                         <input name="firstName" nbInput fullWidth type="text" formControlName="firstName" placeholder="{{ 'AUTH_MODULE.PLACEHOLDER.FIRST_NAME' | translate }}" />
                         <ng-container *ngIf="submitted && RegisterFormGroup.firstName.errors as err">
-                            <span *ngIf="err.required" class="caption status-danger">*First Name is a required field</span>
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.FIRSTNAME_REQUIRED' | translate }}</span>
                         </ng-container>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                         <label for="lastName" class="label">{{ 'AUTH_MODULE.LABEL.LAST_NAME' | translate }}</label>
                         <input name="lastName" nbInput fullWidth type="text" formControlName="lastName" placeholder="{{ 'AUTH_MODULE.PLACEHOLDER.LAST_NAME' | translate }}" />
                         <ng-container *ngIf="submitted && RegisterFormGroup.lastName.errors as err">
-                            <span *ngIf="err.required" class="caption status-danger">*Last Name is a required field</span>
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.LASTNAME_REQUIRED' | translate }}</span>
                         </ng-container>
                     </div>
                 </div>
@@ -31,8 +31,8 @@
                         <label for="email" class="label">{{ 'AUTH_MODULE.LABEL.EMAIL' | translate }}</label>
                         <input name="email" nbInput fullWidth type="email" formControlName="email" placeholder="{{ 'AUTH_MODULE.PLACEHOLDER.EMAIL' | translate }}" />
                         <ng-container *ngIf="submitted && RegisterFormGroup.email.errors as err">
-                            <span *ngIf="err.required" class="caption status-danger">*Email is a required field</span>
-                            <span *ngIf="err.email" class="caption status-danger">*Email is not valid</span>
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.EMAIL_REQUIRED' | translate }}</span>
+                            <span *ngIf="err.email" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.EMAIL_VALID' | translate }}</span>
                         </ng-container>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                         <label for="phone" class="label">{{ 'AUTH_MODULE.LABEL.PHONE' | translate }}</label>
                         <input name="phone" nbInput fullWidth type="text" formControlName="phone" placeholder="{{ 'AUTH_MODULE.PLACEHOLDER.PHONE' | translate }}" />
                         <ng-container *ngIf="submitted && RegisterFormGroup.phone.errors as err">
-                            <span *ngIf="err.required" class="caption status-danger">*Phone is a required field</span>
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.PHONE_REQUIRED' | translate }}</span>
                         </ng-container>
                     </div>
                 </div>

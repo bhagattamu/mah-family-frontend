@@ -10,13 +10,14 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
+import { TranslateModule } from '@ngx-translate/core';
 
 const NB_MODULES = [NbLayoutModule, NbMenuModule, NbUserModule, NbActionsModule, NbSearchModule, NbSidebarModule, NbContextMenuModule, NbButtonModule, NbSelectModule, NbIconModule, NbEvaIconsModule];
 const COMPONENTS = [HeaderComponent, FooterComponent, SearchInputComponent, OneColumnLayoutComponent, ThreeColumnsLayoutComponent, TwoColumnsLayoutComponent, BeforeLoginColumnLayoutComponent];
 const PIPES = [CapitalizePipe, PluralPipe, RoundPipe, TimingPipe, NumberWithCommasPipe];
 
 @NgModule({
-    imports: [CommonModule, ...NB_MODULES],
+    imports: [CommonModule, ...NB_MODULES, TranslateModule.forChild()],
     exports: [CommonModule, ...COMPONENTS, ...PIPES],
     declarations: [...COMPONENTS, ...PIPES]
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserModuleMessages } from 'src/app/@core/constants/messages/user.constant';
 import { SUCCESS, WARNING } from 'src/app/@core/constants/toast.constant';
 import { LoaderService, LocalStorageService, UtilsService } from 'src/app/@core/services';
 import { AuthService } from 'src/app/@core/services/auth.service';
@@ -18,7 +19,7 @@ export class ResetPasswordComponent implements OnInit {
         const queries = this.activatedRoute.snapshot.queryParams;
         const { u, rt } = queries;
         if (!u || !rt) {
-            this.utilsService.showToast(WARNING, 'FORBIDDEN_ROUTE');
+            this.utilsService.showToast(WARNING, UserModuleMessages.ROUTE_ACCESS_FORBIDDEN);
             this.utilsService.navigateToLogin();
         } else {
             this.userId = u;
@@ -33,8 +34,8 @@ export class ResetPasswordComponent implements OnInit {
 
     buildResetPasswordForm(): void {
         this.resetPasswordForm = this.fb.group({
-            password: ['', [Validators.required, Validators.minLength(8)]],
-            confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
+            password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+            confirmPassword: ['', [Validators.required]]
         });
     }
 
@@ -46,12 +47,12 @@ export class ResetPasswordComponent implements OnInit {
         this.authService.isResetPasswordRouteValid(this.recoveryToken, this.userId).subscribe(
             (res) => {
                 if (!(res && res.success && res.data.valid)) {
-                    this.utilsService.showToast(WARNING, 'FORBIDDEN_ROUTE');
+                    this.utilsService.showToast(WARNING, UserModuleMessages.ROUTE_ACCESS_FORBIDDEN);
                     this.utilsService.navigateToLogin();
                 }
             },
             (err) => {
-                this.utilsService.showToast(WARNING, 'FORBIDDEN_ROUTE');
+                this.utilsService.showToast(WARNING, UserModuleMessages.ROUTE_ACCESS_FORBIDDEN);
                 this.utilsService.navigateToLogin();
             }
         );
@@ -81,9 +82,9 @@ export class ResetPasswordComponent implements OnInit {
                     this.localStorageService.setItem('accessToken', res.data.accessToken);
                     this.localStorageService.setItem('uData', res.data);
                     this.router.navigate(['/dashboard']);
-                    this.utilsService.showToast(SUCCESS, res.message[0]);
+                    this.utilsService.showToast(SUCCESS, res.message);
                 } else {
-                    this.utilsService.showToast(WARNING, 'PASSWORD_CHANGE_FAILED');
+                    this.utilsService.showToast(WARNING, UserModuleMessages.PASSWORD_CHANGED_FAILED);
                     this.utilsService.navigateToLogin();
                 }
             },

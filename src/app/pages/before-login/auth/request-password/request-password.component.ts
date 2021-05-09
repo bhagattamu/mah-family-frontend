@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserModuleMessages } from 'src/app/@core/constants/messages/user.constant';
 import { SUCCESS, WARNING } from 'src/app/@core/constants/toast.constant';
 import { LoaderService, UtilsService } from 'src/app/@core/services';
 import { AuthService } from 'src/app/@core/services/auth.service';
@@ -35,9 +36,9 @@ export class RequestPasswordComponent implements OnInit {
                 this.loaderService.stopLoader();
                 if (res && res.success) {
                     this.router.navigate([`/auth/recovery-code/${res.data.id}`]);
-                    this.utilsService.showToast(SUCCESS, res.message[0]);
+                    this.utilsService.showToast(SUCCESS, res.message);
                 } else {
-                    this.utilsService.showToast(WARNING, 'USER_NOT_FOUND');
+                    this.utilsService.showToast(WARNING, UserModuleMessages.USERS_NOT_FOUND);
                 }
             },
             (err) => {

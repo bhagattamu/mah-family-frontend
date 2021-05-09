@@ -1,52 +1,51 @@
-<form [formGroup]="familyInfoForm" (ngSubmit)="onSubmit(familyInfoForm)" class="form-container">
-    <div class="card-header">
-        <h6><nb-icon icon="hash-outline"></nb-icon>{{ type | uppercase }}</h6>
-        <nb-actions>
-            <nb-action>
-                <button nbButton type="button" *ngIf="getButtonActiveStatus('edit')" (click)="editForm()">
-                    <nb-icon nbTooltip="Edit" status="primary" icon="edit-2-outline"></nb-icon>
-                </button>
-                <nb-icon *ngIf="!getButtonActiveStatus('edit')" nbTooltip="Edit" status="basic" icon="edit-2-outline"></nb-icon>
-            </nb-action>
-            <nb-action>
-                <button nbButton type="button" *ngIf="getButtonActiveStatus('reset')" (click)="resetForm()">
-                    <nb-icon nbTooltip="Reset" status="primary" icon="refresh-outline"></nb-icon>
-                </button>
-                <nb-icon *ngIf="!getButtonActiveStatus('reset')" nbTooltip="Reset" status="basic" icon="refresh-outline"></nb-icon>
-            </nb-action>
-            <nb-action>
-                <button nbButton type="submit" *ngIf="getButtonActiveStatus('save')">
-                    <nb-icon nbTooltip="Save" status="primary" icon="save-outline"></nb-icon>
-                </button>
-                <nb-icon *ngIf="!getButtonActiveStatus('save')" nbTooltip="Save" status="basic" icon="save-outline"></nb-icon>
-            </nb-action>
-            <nb-action>
-                <button nbButton type="button" *ngIf="getButtonActiveStatus('cancel')" (click)="cancelForm()">
-                    <nb-icon nbTooltip="Cancel" status="primary" icon="close-circle-outline"></nb-icon>
-                </button>
-                <nb-icon *ngIf="!getButtonActiveStatus('cancel')" nbTooltip="Cancel" status="basic" icon="close-circle-outline"></nb-icon>
-            </nb-action>
-        </nb-actions>
+<form [formGroup]="familyInfoForm" (ngSubmit)="onSubmit(familyInfoForm)" class="form-container" [nbSpinner]="loaderService.getLoaderSubject | async" nbSpinnerStatus="info">
+    <div class="row py-3">
+        <div class="col-sm-12 col-md-6">
+            <h6><nb-icon icon="hash-outline"></nb-icon>{{ type | uppercase }}</h6>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <nb-actions class="float-right">
+                <nb-action>
+                    <button nbButton type="button" *ngIf="getButtonActiveStatus('edit')" (click)="editForm()">
+                        <nb-icon nbTooltip="Edit" status="primary" icon="edit-2-outline"></nb-icon>
+                    </button>
+                    <nb-icon *ngIf="!getButtonActiveStatus('edit')" nbTooltip="Edit" status="basic" icon="edit-2-outline"></nb-icon>
+                </nb-action>
+                <nb-action>
+                    <button nbButton type="button" *ngIf="getButtonActiveStatus('reset')" (click)="resetForm()">
+                        <nb-icon nbTooltip="Reset" status="primary" icon="refresh-outline"></nb-icon>
+                    </button>
+                    <nb-icon *ngIf="!getButtonActiveStatus('reset')" nbTooltip="Reset" status="basic" icon="refresh-outline"></nb-icon>
+                </nb-action>
+                <nb-action>
+                    <button nbButton type="submit" *ngIf="getButtonActiveStatus('save')">
+                        <nb-icon nbTooltip="Save" status="primary" icon="save-outline"></nb-icon>
+                    </button>
+                    <nb-icon *ngIf="!getButtonActiveStatus('save')" nbTooltip="Save" status="basic" icon="save-outline"></nb-icon>
+                </nb-action>
+                <nb-action>
+                    <button nbButton type="button" *ngIf="getButtonActiveStatus('cancel')" (click)="cancelForm()">
+                        <nb-icon nbTooltip="Cancel" status="primary" icon="close-circle-outline"></nb-icon>
+                    </button>
+                    <nb-icon *ngIf="!getButtonActiveStatus('cancel')" nbTooltip="Cancel" status="basic" icon="close-circle-outline"></nb-icon>
+                </nb-action>
+            </nb-actions>
+        </div>
     </div>
+
     <div class="form-control-group">
         <label for="familyName" class="label">*Family Name</label>
-        <span *ngIf="type === 'view'">
-            <b>{{ familyInformation?.familyName }}</b>
-        </span>
-        <input *ngIf="type !== 'view'" name="familyName" type="text" nbInput fullWidth formControlName="familyName" placeholder="Family Name" />
+        <input [readonly]="type === 'view'" name="familyName" type="text" nbInput fullWidth formControlName="familyName" placeholder="Family Name" />
+        <ng-container *ngIf="submitted && FamilyInfoForm.familyName.errors as err">
+            <span *ngIf="err.required" class="caption status-danger">*Family Name is a required field</span>
+        </ng-container>
     </div>
     <div class="form-control-group">
         <label for="subFamilyName" class="label">Sub Family Name</label>
-        <span *ngIf="type === 'view'">
-            <b>{{ familyInformation?.subFamilyName }}</b>
-        </span>
-        <input *ngIf="type !== 'view'" name="subFamilyName" type="text" nbInput fullWidth formControlName="subFamilyName" placeholder="Sub Family Name" />
+        <input [readonly]="type === 'view'" name="subFamilyName" type="text" nbInput fullWidth formControlName="subFamilyName" placeholder="Sub Family Name" />
     </div>
     <div class="form-control-group">
         <label for="origin" class="label">Origin Address</label>
-        <span *ngIf="type === 'view'">
-            <b>{{ familyInformation?.origin }}</b>
-        </span>
-        <input *ngIf="type !== 'view'" name="origin" type="text" nbInput fullWidth formControlName="origin" placeholder="Origin" />
+        <input [readonly]="type === 'view'" name="origin" type="text" nbInput fullWidth formControlName="origin" placeholder="Origin" />
     </div>
 </form>

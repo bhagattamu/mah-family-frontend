@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     HOST_URL: string = environment.HOST_URL;
     profilePictureURL: string;
     userPictureOnly: boolean = false;
-    activeProject: boolean;
     hasSideNavMenu: boolean;
     userLanguage: string;
 
@@ -87,7 +86,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
                     .subscribe((event: Event) => {
                         if (event instanceof NavigationEnd) {
                             if (event.url.includes('/project')) {
-                                this.activeProject = true;
                                 if (event.url === '/project') {
                                     this.sidebarService.sendChangeMenuStatus(MENU_KEY.PROJECT_WITHOUT_CHILD, true);
                                 } else {
@@ -203,9 +201,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
     onChangeLanguage(lang: any) {
         this.authService.setUserLang(lang);
         this.langTranslateService.sendChangeRequest(lang);
-    }
-
-    onNavigateProject(): void {
-        this.activeProject = true;
     }
 }

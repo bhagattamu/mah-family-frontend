@@ -1,88 +1,101 @@
-::ng-deep {
-    th {
-        cursor: pointer;
-        button {
+@import './@theme/styles/themes.scss';
+
+@include nb-install-component {
+    ::ng-deep {
+        input:read-only {
+            color: nb-theme(input-readonly-text-color) !important;
+        }
+
+        th {
             cursor: pointer;
-        }
-    }
-
-    table {
-        tr.nb-tree-grid-row {
-            transition: all 0.25s ease-in-out;
-
-            &:hover {
-                background: rgba(0, 0, 0, 0.03) !important;
-            }
-
-            &.active {
-                background: rgba(0, 0, 0, 0.06) !important;
-            }
-
-            .nb-tree-grid-cell {
-                > * {
-                    float: left;
-                }
-                nb-tree-grid-row-toggle {
-                    cursor: pointer;
-                }
-            }
-        }
-    }
-
-    nb-card-header {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    nb-card-body {
-        max-height: calc(100vh - 150px);
-    }
-
-    .card-header {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    /* picture in form css */
-    .image-upload {
-        display: flex;
-        user-select: none;
-
-        .upload-holder {
-            width: 100px;
-            height: 100px;
-            border-radius: 100px;
-            position: relative;
-
-            img {
-                border: 1px solid #e4e9f2;
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
-                border-radius: 100px;
-            }
-
-            .upload-button {
-                width: 30px;
-                height: 30px;
-                background-color: #fff;
-                border: 1px solid #e4e9f2;
-                position: absolute;
-                top: 0;
-                right: 0;
-                border-radius: 30px;
+            button {
                 cursor: pointer;
-                text-align: center;
-                line-height: 30px;
-                transition: all 0.3s ease-in-out;
+            }
+        }
 
-                nb-icon {
-                    font-size: 1rem;
-                }
+        table {
+            tr.nb-tree-grid-row {
+                transition: all 0.25s ease-in-out;
 
                 &:hover {
-                    color: #5b96fe;
-                    border-color: #5b96fe;
+                    background: rgba(0, 0, 0, 0.03) !important;
+                }
+
+                &.active {
+                    background: rgba(0, 0, 0, 0.06) !important;
+                }
+
+                .nb-tree-grid-cell {
+                    > * {
+                        float: left;
+                    }
+                    nb-tree-grid-row-toggle {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .cdk-overlay-pane {
+            nb-card {
+                width: 50vw;
+            }
+        }
+
+        nb-card-header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nb-card-body {
+            max-height: calc(100vh - 150px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* picture in form css */
+        .image-upload {
+            display: flex;
+            user-select: none;
+
+            .upload-holder {
+                width: 100px;
+                height: 100px;
+                border-radius: 100px;
+                position: relative;
+
+                img {
+                    border: 1px solid #e4e9f2;
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 100px;
+                }
+
+                .upload-button {
+                    width: 30px;
+                    height: 30px;
+                    background-color: #fff;
+                    border: 1px solid #e4e9f2;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    border-radius: 30px;
+                    cursor: pointer;
+                    text-align: center;
+                    line-height: 30px;
+                    transition: all 0.3s ease-in-out;
+
+                    nb-icon {
+                        font-size: 1rem;
+                    }
+
+                    &:hover {
+                        color: #5b96fe;
+                        border-color: #5b96fe;
+                    }
                 }
             }
         }

@@ -41,7 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
         window.d3 = d3;
         window._ = _;
         this.translate.addLangs(['en', 'ne']);
-        this.translate.setDefaultLang('ne');
+        this.translate.setDefaultLang('en');
         const userLang = this.localStorageService.getItem('language');
         if (!userLang) {
             this.localStorageService.setItem('language', 'en');

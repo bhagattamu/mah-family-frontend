@@ -1,4 +1,22 @@
 {
+    "Light": "Light",
+    "Dark": "Dark",
+    "Cosmic": "Cosmic",
+    "Corporate": "Corporate",
+    "THANK_YOU_PAGE": {
+        "WELCOME": "Welcome to Ancestor Culture.",
+        "THANKING": "Thank you for your registration, you will be notified when your account is activated. This could take up to two weeks.",
+        "PROJECT_THEME":"Welcome to the initiative to learn and save culture in an inovative way.",
+        "HELP_MESSAGE": "We’re here to help",
+        "CONTACT_US_START": "If you have any questions, feel free to ",
+        "CONTACT_US_END": "contact us.",
+        "THANK_YOU": "Thank you",
+        "BRAND": "Ancestor Culture",
+        "CREATOR": "Bhagat Gurung"
+    },
+    "HEADER": {
+        "SELECT_LANGUAGE": "Select Language"
+    },
     "AUTH_MODULE": {
         "HEADING": {
             "LOGIN": "Login",
@@ -47,6 +65,18 @@
             "TERMS_AND_CONDITIONS": "Terms and conditions"
         },
         "MESSAGE": {
+            "EMAIL_REQUIRED": "Email is a required field",
+            "EMAIL_VALID": "Email is not valid",
+            "PASSWORD_REQUIRED": "Password is a required field",
+            "PASSWORD_MINLENGTH": "Password should be of atleast 4 character",
+            "PASSWORD_MAXLENGTH": "Password should not be more than 20 character",
+            "CONFIRM_PASSWORD_REQUIRED": "Confirm password is a required field",
+            "CONFIRM_PASSWORD_MATCH": "Confirm password does not match with password",
+            "FIRSTNAME_REQUIRED": "First Name is a required field",
+            "LASTNAME_REQUIRED": "Last Name is a required field",
+            "PHONE_REQUIRED": "Phone is a required field",
+            "RECOVERY_CODE_REQUIRED": "You should enter a code to continue",
+            "RECOVERY_CODE_VALID": "Recovery code is not valid",
             "CODE_SENT_INFO": "You should receive code in email after 1 min",
             "DONT_GET_CODE": "Don't receive code?",
             "NO_ACCOUNT": "Don't have an account?",

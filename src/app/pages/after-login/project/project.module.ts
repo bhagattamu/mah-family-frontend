@@ -20,6 +20,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ProjectCardComponent } from './project-card/project-card.component';
 import { SelectProjectComponent } from './select-project/select-project.component';
 import { ThemeModule } from 'src/app/@theme/theme.module';
+import { ProjectFormComponent } from './project-form/project-form.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { ThemeModule } from 'src/app/@theme/theme.module';
         TreeNodeComponent,
         FamilyTreeContextMenuComponent,
         PrintFamilyTreeButtonComponent,
-        SelectProjectComponent
+        SelectProjectComponent,
+        ProjectFormComponent
     ],
     imports: [ProjectRoutingModule, ...COMMON_MODULE, ...NEBULAR_COMPONENTS_MODULE, SharedModule, ThemeModule]
 })

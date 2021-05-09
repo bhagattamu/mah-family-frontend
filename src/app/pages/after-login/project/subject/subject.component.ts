@@ -33,8 +33,8 @@ export class SubjectComponent implements OnInit, OnDestroy {
     projectId: string;
     subjects: Array<any>;
     tableData: Array<any> = [];
-    columns = ['firstName', 'lastName', 'spouse', 'country', 'address', 'action'];
-    columnNames = ['First Name', 'Last Name', 'Spouse', 'Country', 'Address', 'Action'];
+    columns = ['firstName', 'lastName', 'spouse', 'address', 'action'];
+    columnNames = ['First Name', 'Last Name', 'Spouse', 'Address', 'Action'];
     data: NbTreeGridDataSource<FSEntry>;
     menuItems: NbMenuItem[];
     rowData: any;

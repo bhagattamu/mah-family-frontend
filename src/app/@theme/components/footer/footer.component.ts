@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     template: `
         <span class="created-by">
             Created with ♥ by
-            <b><a href="https://bhagatgurung.com.np" target="_blank">Ancestor Culture</a></b>
+            <b><a href="https://bhagatgurung.com.np" target="_blank">Bhagat Gurung</a></b>
             2021
         </span>
         <div class="socials">

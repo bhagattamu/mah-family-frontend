@@ -1,4 +1,4 @@
-<nb-card class="dialog-card">
+<nb-card class="dialog-card" [nbSpinner]="loaderService.getLoaderSubject | async" nbSpinnerStatus="info">
     <nb-card-header>
         <h6>New Child - For {{ subject.fullName }}</h6>
         <button nbButton (click)="closeDialog()">
@@ -23,11 +23,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-sm-12 col-md-6">
                     <div class="form-group">
-                        <nb-select placeholder="{{ subject?.gender === 'M' ? '*Mother' : '*Father' }}" formControlName="parent">
+                        <label for="parent" class="label">{{ subject?.gender === 'M' ? '*Mother' : '*Father' }}</label>
+                        <nb-select fullWidth placeholder="{{ subject?.gender === 'M' ? '*Mother' : '*Father' }}" formControlName="parent">
                             <nb-option *ngFor="let parent of parents" [value]="parent?.spouse?._id">{{ parent?.spouse?.fullName }}</nb-option>
                         </nb-select>
+                        <ng-container *ngIf="submitted && ChildForm.parent.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Select a parent to continue</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>
@@ -37,21 +41,31 @@
                         <label for="firstName" class="label">*First Name:</label>
                         <input type="text" nbInput fullWidth placeholder="Enter First name" formControlName="firstName" />
                     </div>
+                    <ng-container *ngIf="submitted && ChildForm.firstName.errors as err">
+                        <span *ngIf="err.required" class="caption status-danger">*First Name is a required field</span>
+                    </ng-container>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="lastName" class="label">*Last Name:</label>
                         <input type="text" nbInput fullWidth placeholder="Enter Last name" formControlName="lastName" />
+                        <ng-container *ngIf="submitted && ChildForm.lastName.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Last Name is a required field</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col">
+                <div class="col-sm-12 col-md-6">
                     <div class="form-group">
-                        <nb-select placeholder="Select Gender" formControlName="gender">
+                        <label for="gender" class="label">*Gender:</label>
+                        <nb-select fullWidth placeholder="Select Gender" formControlName="gender">
                             <nb-option *ngFor="let genderRow of genders" [value]="genderRow.sGender">{{ genderRow.lGender }}</nb-option>
                         </nb-select>
+                        <ng-container *ngIf="submitted && ChildForm.gender.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Select a gender to continue</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>
