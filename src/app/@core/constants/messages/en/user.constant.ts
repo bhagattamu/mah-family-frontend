@@ -29,5 +29,7 @@ export const UserModuleMessagesEN = {
     [UserModuleMessages.PASSWORD_CHANGED]: 'Successfully changed your password',
     [UserModuleMessages.EMAIL_NOT_VALID]: 'Email is not valid',
     [UserModuleMessages.LOGIN_FAILED]: 'Failed to login, try again',
-    [UserModuleMessages.PASSWORD_CHANGED_FAILED]: 'Failed to change password'
+    [UserModuleMessages.PASSWORD_CHANGED_FAILED]: 'Failed to change password',
+    [UserModuleMessages.EMAIL_ALREADY_REGISTERED]: 'Your email is already registered, try login or register with another email',
+    [UserModuleMessages.PHONE_ALREADY_REGISTERED]: 'Your phone number is already registered, register with another phone number or contact us'
 };

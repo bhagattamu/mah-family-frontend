@@ -1,0 +1,15 @@
+::ng-deep {
+    .not-found-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        flex-direction: column;
+
+        svg {
+            width: 600px;
+            height: 600px;
+        }
+    }
+}

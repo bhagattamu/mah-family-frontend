@@ -21,6 +21,8 @@ import { ProjectCardComponent } from './project-card/project-card.component';
 import { SelectProjectComponent } from './select-project/select-project.component';
 import { ThemeModule } from 'src/app/@theme/theme.module';
 import { ProjectFormComponent } from './project-form/project-form.component';
+import { MiscellaneousModule } from 'src/app/pages/miscellaneous/miscellaneous.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -42,6 +44,6 @@ import { ProjectFormComponent } from './project-form/project-form.component';
         SelectProjectComponent,
         ProjectFormComponent
     ],
-    imports: [ProjectRoutingModule, ...COMMON_MODULE, ...NEBULAR_COMPONENTS_MODULE, SharedModule, ThemeModule]
+    imports: [ProjectRoutingModule, ...COMMON_MODULE, ...NEBULAR_COMPONENTS_MODULE, SharedModule, ThemeModule, MiscellaneousModule, TranslateModule]
 })
 export class ProjectModule {}

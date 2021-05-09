@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMenuItem, NbMenuService, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 import { Subscription } from 'rxjs';
+import { LoaderService } from 'src/app/@core/services';
 import { AuthService } from 'src/app/@core/services/auth.service';
 
 interface TreeNode<T> {
@@ -28,8 +29,10 @@ export class AdminManageUserComponent implements OnInit, OnDestroy {
     menuItems: Array<NbMenuItem> = [{ title: 'Verify' }];
     menuClickSubscription: Subscription;
     rowUser: any;
+    dataFound: boolean;
+    totalData: number;
 
-    constructor(private readonly authService: AuthService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>, private readonly menuService: NbMenuService) {}
+    constructor(private readonly authService: AuthService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>, private readonly menuService: NbMenuService, public loaderService: LoaderService) {}
 
     ngOnInit(): void {
         this.getAllUsers({ verified: false });
@@ -58,12 +61,23 @@ export class AdminManageUserComponent implements OnInit, OnDestroy {
     }
 
     getAllUsers(query: any) {
-        this.authService.getAllUser(query).subscribe((res) => {
-            if (res && res.success) {
-                this.tableData = this.createTreeGridDataArray(res.data);
-                this.data = this.dataSourceBuilder.create(this.tableData);
+        this.loaderService.startLoader();
+        this.authService.getAllUser(query).subscribe(
+            (res) => {
+                this.loaderService.stopLoader();
+                if (res && res.success) {
+                    this.dataFound = res.data.length ? true : false;
+                    this.totalData = res.data.length;
+                    this.tableData = this.createTreeGridDataArray(res.data);
+                    this.data = this.dataSourceBuilder.create(this.tableData);
+                }
+            },
+            (err) => {
+                this.dataFound = false;
+                this.totalData = 0;
+                this.loaderService.stopLoader();
             }
-        });
+        );
     }
 
     createTreeGridDataArray(users: Array<any>) {
@@ -87,6 +101,5 @@ export class AdminManageUserComponent implements OnInit, OnDestroy {
 
     openMenu(userData: any): void {
         this.rowUser = userData;
-        console.log(userData);
     }
 }

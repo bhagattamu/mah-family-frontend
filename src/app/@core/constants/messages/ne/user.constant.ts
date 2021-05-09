@@ -28,5 +28,8 @@ export const UserModuleMessagesNE = {
     [UserModuleMessages.ROUTE_ACCESS_GRANTED]: 'ROUTE_ACCESS_GRANTED',
     [UserModuleMessages.PASSWORD_CHANGED]: 'PASSWORD_CHANGED',
     [UserModuleMessages.EMAIL_NOT_VALID]: 'EMAIL_NOT_VALID',
-    [UserModuleMessages.LOGIN_FAILED]: 'LOGIN_FAILED'
+    [UserModuleMessages.LOGIN_FAILED]: 'LOGIN_FAILED',
+    [UserModuleMessages.PASSWORD_CHANGED_FAILED]: 'PASSWORD_CHANGED_FAILED',
+    [UserModuleMessages.EMAIL_ALREADY_REGISTERED]: 'EMAIL_ALREADY_REGISTERED',
+    [UserModuleMessages.PHONE_ALREADY_REGISTERED]: 'PHONE_ALREADY_REGISTERED'
 };

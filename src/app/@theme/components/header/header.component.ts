@@ -104,6 +104,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.userLanguage = this.authService.getUserLang() ?? 'en';
         this.authService.setUserLang(this.userLanguage);
+        this.langTranslateService.sendChangeRequest(this.authService.getUserLang());
         this.listenProfileChange();
         this.listenLanguageChange();
         this.currentTheme = this.themeService.currentTheme;

@@ -3,6 +3,9 @@
     "Dark": "Dark",
     "Cosmic": "Cosmic",
     "Corporate": "Corporate",
+    "new": "NEW",
+    "edit": "EDIT",
+    "view": "VIEW",
     "THANK_YOU_PAGE": {
         "WELCOME": "Welcome to Ancestor Culture.",
         "THANKING": "Thank you for your registration, you will be notified when your account is activated. This could take up to two weeks.",
@@ -106,5 +109,28 @@
             "CHANGE_PASSWORD": "Change Password"
         },
         "MESSAGE": ""
+    },
+    "PROJECT_MODULE": {
+        "HEADING": {
+            "PROJECT": "Project",
+            "PROJECT_FORM": "Project Form",
+            "SUBJECT": "Subject",
+            "FAMILY_TREE": "Family Tree",
+            "TIMELINE": "Timeline"
+        },
+        "LABEL": {
+            "CREATED_DATE": "Created Date",
+            "NAME": "Name: "
+        },
+        "PLACEHOLDER": {
+            "NAME": "Enter Project Name"
+        },
+        "BUTTON": {
+            "ADD_PROJECT": "Add Project",
+            "SAVE": "Save"
+        },
+        "MESSAGE": {
+            "PROJECT_NAME_REQUIRED": "Project name is a required field"
+        }
     }
 }

@@ -1,15 +1,20 @@
 <div class="page-header">
-    <h1 class="title">Project</h1>
+    <h1 class="title">{{ 'PROJECT_MODULE.HEADING.PROJECT' | translate }}</h1>
     <section class="my-auto">
         <button nbButton status="primary" (click)="openNewForm()">
             <nb-icon icon="folder-add-outline"></nb-icon>
-            Add Project
+            {{ 'PROJECT_MODULE.BUTTON.ADD_PROJECT' | translate }}
         </button>
     </section>
 </div>
-<!-- <app-add-new-project [type]="formType" [project]="formData" (onCreate)="createProject($event)" (onUpdate)="updateProject($event)"></app-add-new-project> -->
-<div class="row">
-    <div class="col-xxxl-3 col-md-6" *ngFor="let project of projects">
+<div *ngIf="!(loaderService.getLoaderSubject | async) && dataFound" class="row">
+    <div *ngFor="let project of projects" class="col-xxxl-3 col-md-6">
         <app-project-card [project]="project" (onUpdate)="updateProject($event)"></app-project-card>
     </div>
 </div>
+<ng-container *ngIf="(loaderService.getLoaderSubject | async) && !dataFound">
+    <app-loader></app-loader>
+</ng-container>
+<ng-container *ngIf="!(loaderService.getLoaderSubject | async) && !dataFound">
+    <app-data-not-found type="{{ 'PROJECT_MODULE.HEADING.PROJECT' | translate }}"></app-data-not-found>
+</ng-container>
