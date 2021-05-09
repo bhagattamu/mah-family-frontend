@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
+import { UserModuleMessages } from 'src/app/@core/constants/messages/user.constant';
 import { SUCCESS, WARNING } from 'src/app/@core/constants/toast.constant';
-import { UtilsService } from 'src/app/@core/services';
+import { LoaderService, UtilsService } from 'src/app/@core/services';
 import { AuthService } from 'src/app/@core/services/auth.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { AuthService } from 'src/app/@core/services/auth.service';
 export class UserChangePasswordComponent implements OnInit {
     submitted: boolean;
     changePasswordFormGroup: FormGroup;
-    constructor(private readonly ref: NbDialogRef<UserChangePasswordComponent>, private readonly fb: FormBuilder, private readonly authService: AuthService, private readonly utilsService: UtilsService) {}
+    constructor(private readonly ref: NbDialogRef<UserChangePasswordComponent>, private readonly fb: FormBuilder, private readonly authService: AuthService, private readonly utilsService: UtilsService, public loaderService: LoaderService) {}
 
     ngOnInit(): void {
         this.buildChangePasswordFormGroup();
@@ -44,14 +45,19 @@ export class UserChangePasswordComponent implements OnInit {
             this.submitted = true;
             return;
         }
+        this.loaderService.startLoader();
         this.authService.changePassword(value).subscribe(
             (res) => {
+                this.loaderService.stopLoader();
                 if (res && res.success) {
                     this.ref.close(res);
-                    this.utilsService.showToast(SUCCESS, 'Successfully changed password');
+                    this.utilsService.showToast(SUCCESS, res.message);
+                } else {
+                    this.utilsService.showToast(WARNING, UserModuleMessages.PASSWORD_CHANGED_FAILED);
                 }
             },
             (err) => {
+                this.loaderService.stopLoader();
                 this.utilsService.showToast(WARNING, err.message);
             }
         );

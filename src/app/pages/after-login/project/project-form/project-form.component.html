@@ -1,6 +1,6 @@
 <nb-card [nbSpinner]="loaderService.getLoaderSubject | async" nbSpinnerStatus="info">
     <nb-card-header>
-        <h6>Project Form - {{ type | uppercase }}</h6>
+        <h6>{{ 'PROJECT_MODULE.HEADING.PROJECT_FORM' | translate }} - {{ type | translate }}</h6>
         <button nbButton (click)="closeDialog()">
             <nb-icon icon="close-outline"></nb-icon>
         </button>
@@ -10,18 +10,15 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="projectName" class="label">*Name:</label>
-                        <span *ngIf="type === 'view'">
-                            <b>{{ ProjectFromGroup.projectName.value }} </b>
-                        </span>
-                        <input *ngIf="type !== 'view'" type="text" nbInput fullWidth placeholder="Enter project name" formControlName="projectName" />
+                        <label for="projectName" class="label">*{{ 'PROJECT_MODULE.LABEL.NAME' | translate }}</label>
+                        <input [readonly]="type === 'view'" type="text" nbInput fullWidth placeholder="{{ 'PROJECT_MODULE.PLACEHOLDER.NAME' | translate }}" formControlName="projectName" />
                         <ng-container *ngIf="submitted && ProjectFromGroup.projectName.errors as err">
-                            <span *ngIf="err.required" class="caption status-danger">*Project name is a required field</span>
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'PROJECT_MODULE.MESSAGE.PROJECT_NAME_REQUIRED' | translate }}</span>
                         </ng-container>
                     </div>
                 </div>
             </div>
-            <button nbButton status="primary" type="submit">Save</button>
+            <button nbButton status="primary" type="submit">{{ 'PROJECT_MODULE.BUTTON.SAVE' | translate }}</button>
         </form>
     </nb-card-body>
 </nb-card>

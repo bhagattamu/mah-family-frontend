@@ -18,6 +18,6 @@ export class UtilsService {
     }
 
     translateMessage(message: string): string {
-        return (this.authService.getUserLang()?.toUpperCase() ?? 'EN') === 'EN' ? ENMessage[message] : NEMessage[message] ?? message;
+        return ((this.authService.getUserLang()?.toUpperCase() ?? 'EN') === 'EN' ? ENMessage[message] : NEMessage[message]) ?? message;
     }
 }

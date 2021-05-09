@@ -1,1 +1,133 @@
-{}
+{
+    "Light": "Light",
+    "Dark": "Dark",
+    "Cosmic": "Cosmic",
+    "Corporate": "Corporate",
+    "new": "NEW",
+    "edit": "EDIT",
+    "view": "VIEW",
+    "THANK_YOU_PAGE": {
+        "WELCOME": "Welcome to Ancestor Culture.",
+        "THANKING": "Thank you for your registration, you will be notified when your account is activated. This could take up to two weeks.",
+        "PROJECT_THEME":"Welcome to the initiative to learn and save culture in an inovative way.",
+        "HELP_MESSAGE": "We’re here to help",
+        "CONTACT_US_START": "If you have any questions, feel free to ",
+        "CONTACT_US_END": "contact us.",
+        "THANK_YOU": "Thank you",
+        "BRAND": "Ancestor Culture",
+        "CREATOR": "Bhagat Gurung"
+    },
+    "HEADER": {
+        "SELECT_LANGUAGE": "Select Language"
+    },
+    "AUTH_MODULE": {
+        "HEADING": {
+            "LOGIN": "Login",
+            "REGISTER": "Register",
+            "REQUEST_PASSWORD": "Request Password",
+            "RESET_PASSWORD": "Reset Password",
+            "RECOVERY_CODE": "Reset Password"
+        },
+        "SUB_HEADING": {
+            "LOGIN": "Hello! Login with your email.",
+            "REGISTER": "Feel free to register. You are a step back to use this app.",
+            "REQUEST_PASSWORD": "This is sub heading of req pass",
+            "RESET_PASSWORD": "",
+            "RECOVERY_CODE": "Enter code to continue"
+        },
+        "LABEL": {
+            "EMAIL_OR_PHONE": "Email or phone:",
+            "EMAIL": "Email Address:",
+            "PASSWORD": "Password:",
+            "CONFIRM_PASSWORD": "Confirm Password:",
+            "FIRST_NAME": "First name:",
+            "LAST_NAME": "Last name:",
+            "PHONE": "Phone number:",
+            "CODE": "Recovery Code:"
+        },
+        "PLACEHOLDER": {
+            "EMAIL_OR_PHONE": "Email or phone",
+            "EMAIL": "Email Address",
+            "PASSWORD": "Password",
+            "CONFIRM_PASSWORD": "Confirm Password",
+            "FIRST_NAME": "First name",
+            "LAST_NAME": "Last name",
+            "PHONE": "Phone number",
+            "LANGUAGE": "Select Language",
+            "CODE": "Enter recovery code"
+        },
+        "BUTTON": {
+            "LOGIN": "Login",
+            "REGISTER": "Register",
+            "FORGET_PASSWORD": "Forget Password?",
+            "REQUEST_PASSWORD": "Request Password",
+            "BACK_TO_LOGIN": "Back To Login",
+            "RESEND_CODE": "Send code",
+            "CONTINUE": "Continue",
+            "RESET_PASSWORD": "Reset Password",
+            "TERMS_AND_CONDITIONS": "Terms and conditions"
+        },
+        "MESSAGE": {
+            "EMAIL_REQUIRED": "Email is a required field",
+            "EMAIL_VALID": "Email is not valid",
+            "PASSWORD_REQUIRED": "Password is a required field",
+            "PASSWORD_MINLENGTH": "Password should be of atleast 4 character",
+            "PASSWORD_MAXLENGTH": "Password should not be more than 20 character",
+            "CONFIRM_PASSWORD_REQUIRED": "Confirm password is a required field",
+            "CONFIRM_PASSWORD_MATCH": "Confirm password does not match with password",
+            "FIRSTNAME_REQUIRED": "First Name is a required field",
+            "LASTNAME_REQUIRED": "Last Name is a required field",
+            "PHONE_REQUIRED": "Phone is a required field",
+            "RECOVERY_CODE_REQUIRED": "You should enter a code to continue",
+            "RECOVERY_CODE_VALID": "Recovery code is not valid",
+            "CODE_SENT_INFO": "You should receive code in email after 1 min",
+            "DONT_GET_CODE": "Don't receive code?",
+            "NO_ACCOUNT": "Don't have an account?",
+            "ALREADY_ACCOUNT": "Already have an account?",
+            "AGREE_TO": "Agree to"
+        }
+    },
+    "USER_MODULE": {
+        "HEADING": {
+            "CHANGE_PASSWORD": "Change Password",
+            "PROFILE": "Profile"
+        },
+        "SUB_HEADING": {
+            "CHANGE_PASSWORD": "Please enter your current password and new password inorder to change your password"
+        },
+        "LABEL": {
+            "PASSWORD": "Password: ",
+            "CURRENT_PASSWORD": "Current Password: ",
+            "CONFIRM_PASSWORD": "Confirm Password: "
+        },
+        "PLACEHOLDER": {
+            "PASSWORD": "Enter Password",
+            "CURRENT_PASSWORD": "Enter Current Password",
+            "CONFIRM_PASSWORD": "Enter Confirm Password"
+        },
+        "BUTTON": {
+            "CHANGE_PASSWORD": "Change Password"
+        },
+        "MESSAGE": ""
+    },
+    "PROJECT_MODULE": {
+        "HEADING": {
+            "PROJECT": "Project",
+            "PROJECT_FORM": "Project Form"
+        },
+        "LABEL": {
+            "CREATED_DATE": "Created Date",
+            "NAME": "Name: "
+        },
+        "PLACEHOLDER": {
+            "NAME": "Enter Project Name"
+        },
+        "BUTTON": {
+            "ADD_PROJECT": "Add Project",
+            "SAVE": "Save"
+        },
+        "MESSAGE": {
+            "PROJECT_NAME_REQUIRED": "Project name is a required field"
+        }
+    }
+}

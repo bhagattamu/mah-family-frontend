@@ -11,6 +11,7 @@ import { SharedModule } from './pages/shared/shared.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ThemeModule } from './@theme/theme.module';
+import { MiscellaneousModule } from './pages/miscellaneous/miscellaneous.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -31,7 +32,8 @@ import { ThemeModule } from './@theme/theme.module';
         ...NEBULAR_ROOT_MODULE,
         ...NEBULAR_COMPONENTS_MODULE,
         CoreModule.forRoot(),
-        ThemeModule.forRoot()
+        ThemeModule.forRoot(),
+        MiscellaneousModule
     ],
     providers: [
         {

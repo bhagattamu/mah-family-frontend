@@ -39,15 +39,15 @@
             nb-card {
                 width: 50vw;
             }
+
+            nb-card-body {
+                max-height: calc(100vh - 150px);
+            }
         }
 
         nb-card-header {
             display: flex;
             justify-content: space-between;
-        }
-
-        nb-card-body {
-            max-height: calc(100vh - 150px);
         }
 
         .card-header {

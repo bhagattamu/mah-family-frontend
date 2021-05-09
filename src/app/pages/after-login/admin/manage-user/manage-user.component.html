@@ -8,7 +8,13 @@
 </div>
 <nb-card>
     <nb-card-body>
-        <table [nbTreeGrid]="data">
+        <ng-container *ngIf="(loaderService.getLoaderSubject | async) && !dataFound">
+            <app-loader></app-loader>
+        </ng-container>
+        <ng-container *ngIf="!(loaderService.getLoaderSubject | async) && !dataFound">
+            <app-data-not-found type="User"></app-data-not-found>
+        </ng-container>
+        <table *ngIf="!(loaderService.getLoaderSubject | async) && dataFound" [nbTreeGrid]="data">
             <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="columns"></tr>
             <tr [clickToToggle]="false" nbTreeGridRow *nbTreeGridRowDef="let row; columns: columns"></tr>
             <ng-container *ngFor="let column of columns; let i = index" [nbTreeGridColumnDef]="column">
