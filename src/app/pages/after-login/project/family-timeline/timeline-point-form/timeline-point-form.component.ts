@@ -26,6 +26,7 @@ export class TimelinePointFormComponent implements OnInit {
         emotionType: string;
         images: Array<string>;
     }>;
+    maxDate: Date = new Date();
 
     constructor(private fb: FormBuilder, private subjectService: SubjectService, private subjectTimelineService: SubjectTimelineService, private router: Router, private utilsService: UtilsService) {}
 
@@ -88,6 +89,10 @@ export class TimelinePointFormComponent implements OnInit {
         });
     }
 
+    get TimelineForm() {
+        return this.timelineFormGroup.controls;
+    }
+
     get eventsGroup(): FormGroup {
         return this.timelineFormGroup.get('eventsGroup') as FormGroup;
     }
@@ -126,6 +131,7 @@ export class TimelinePointFormComponent implements OnInit {
 
     onSubmit({ valid, value }): void {
         if (!valid) {
+            this.submitted = true;
             return;
         }
         if (this.formType === 'NEW') {

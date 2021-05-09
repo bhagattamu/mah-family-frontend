@@ -1,4 +1,4 @@
-<nb-card class="dialog-card">
+<nb-card class="dialog-card" [nbSpinner]="loaderService.getLoaderSubject | async" nbSpinnerStatus="info">
     <nb-card-header>
         <h6>New Spouse - For {{ subject.fullName }}</h6>
         <button nbButton (click)="closeDialog()">
@@ -27,21 +27,31 @@
                     <div class="form-group">
                         <label for="firstName" class="label">*First Name:</label>
                         <input type="text" nbInput fullWidth placeholder="Enter First name" formControlName="firstName" />
+                        <ng-container *ngIf="submitted && SpouseForm.firstName.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*First Name is a required field</span>
+                        </ng-container>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="lastName" class="label">*Last Name:</label>
                         <input type="text" nbInput fullWidth placeholder="Enter Last name" formControlName="lastName" />
+                        <ng-container *ngIf="submitted && SpouseForm.lastName.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Last Name is a required field</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-sm-12 col-md-6">
                     <div class="form-group">
-                        <nb-select placeholder="Select Gender" formControlName="gender">
+                        <label for="gender" class="label">*Gender:</label>
+                        <nb-select fullWidth placeholder="Select Gender" formControlName="gender">
                             <nb-option *ngFor="let genderRow of genders" [value]="genderRow.sGender">{{ genderRow.lGender }}</nb-option>
                         </nb-select>
+                        <ng-container *ngIf="submitted && SpouseForm.gender.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Select a gender to continue</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>

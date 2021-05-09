@@ -2,10 +2,13 @@
     <nb-card-body>
         <form [formGroup]="timelineFormGroup" (ngSubmit)="onSubmit(timelineFormGroup)">
             <div class="row">
-                <div class="col">
+                <div class="col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="title" class="label">*Title:</label>
                         <input type="text" nbInput fullWidth placeholder="Enter Title" formControlName="title" />
+                        <ng-container *ngIf="submitted && TimelineForm.title.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Timeline title is a required field</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>
@@ -16,13 +19,20 @@
                         <nb-select fullWidth placeholder="Select Subject" formControlName="subject">
                             <nb-option *ngFor="let subject of subjects" [value]="subject._id">{{ subject.fullName }}</nb-option>
                         </nb-select>
+                        <ng-container *ngIf="submitted && TimelineForm.subject.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Select a event main person</span>
+                        </ng-container>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
-                        <label for="timestamp" class="label">*Date:</label>
-                        <input name="timestamp" type="text" fullWidth nbInput placeholder="Select Time" [nbDatepicker]="dateTimePicker" formControlName="date" />
-                        <nb-datepicker #dateTimePicker></nb-datepicker>
+                        <label for="date" class="label">*Date:</label>
+                        <input name="date" type="text" fullWidth nbInput placeholder="Select Date" [nbDatepicker]="dateTimePicker" formControlName="date" />
+                        <nb-datepicker #dateTimePicker [max]="maxDate"></nb-datepicker>
+                        <ng-container *ngIf="submitted && TimelineForm.date.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Event date is required field</span>
+                            <span *ngIf="err.nbDatepickerMax" class="caption status-danger">*Event time should be from past</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>

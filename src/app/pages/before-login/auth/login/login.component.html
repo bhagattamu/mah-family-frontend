@@ -12,8 +12,8 @@
                             <input name="email" type="email" nbInput fullWidth formControlName="email" placeholder="{{ 'AUTH_MODULE.PLACEHOLDER.EMAIL' | translate }}" />
                         </nb-form-field>
                         <ng-container *ngIf="submitted && LoginFormGroup.email.errors as err">
-                            <span *ngIf="err.required" class="caption status-danger">*Email is a required field</span>
-                            <span *ngIf="err.email" class="caption status-danger">*Email is not valid</span>
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.EMAIL_REQUIRED' | translate }}</span>
+                            <span *ngIf="err.email" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.EMAIL_VALID' | translate }}</span>
                         </ng-container>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                             <input [type]="eyeOpen ? 'text' : 'password'" nbInput fullWidth formControlName="password" placeholder="{{ 'AUTH_MODULE.PLACEHOLDER.PASSWORD' | translate }}" />
                         </nb-form-field>
                         <ng-container *ngIf="submitted && LoginFormGroup.password.errors as err">
-                            <span *ngIf="err.required" class="caption status-danger">*Password is a required field</span>
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.PASSWORD_REQUIRED' | translate }}</span>
                         </ng-container>
                     </div>
                 </div>

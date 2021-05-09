@@ -6,6 +6,11 @@
     justify-content: center;
 }
 
+td span {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .nb-column-firstName {
     width: 60%;
     overflow: auto;

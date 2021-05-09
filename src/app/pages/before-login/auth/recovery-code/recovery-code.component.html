@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card [nbSpinner]="loaderService.getLoaderSubject | async" nbSpinnerStatus="info">
     <nb-card-body>
         <h1 class="title">{{ 'AUTH_MODULE.HEADING.RECOVERY_CODE' | translate }}</h1>
         <p class="sub-title">
@@ -10,6 +10,11 @@
                     <div class="form-group">
                         <label for="recoveryCode" class="label">{{ 'AUTH_MODULE.LABEL.CODE' | translate }}</label>
                         <input name="recoveryCode" nbInput fullWidth formControlName="recoveryCode" placeholder="{{ 'AUTH_MODULE.PLACEHOLDER.CODE' | translate }}" />
+                        <ng-container *ngIf="submitted && RecoveryCodeForm.recoveryCode.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.RECOVERY_CODE_REQUIRED' | translate }}</span>
+                            <span *ngIf="err.minlength" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.RECOVERY_CODE_VALID' | translate }}</span>
+                            <span *ngIf="err.maxlength" class="caption status-danger">*{{ 'AUTH_MODULE.MESSAGE.RECOVERY_CODE_VALID' | translate }}</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>

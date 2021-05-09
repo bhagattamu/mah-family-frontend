@@ -1,0 +1,27 @@
+<nb-card [nbSpinner]="loaderService.getLoaderSubject | async" nbSpinnerStatus="info">
+    <nb-card-header>
+        <h6>Project Form - {{ type | uppercase }}</h6>
+        <button nbButton (click)="closeDialog()">
+            <nb-icon icon="close-outline"></nb-icon>
+        </button>
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit(projectForm)">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="projectName" class="label">*Name:</label>
+                        <span *ngIf="type === 'view'">
+                            <b>{{ ProjectFromGroup.projectName.value }} </b>
+                        </span>
+                        <input *ngIf="type !== 'view'" type="text" nbInput fullWidth placeholder="Enter project name" formControlName="projectName" />
+                        <ng-container *ngIf="submitted && ProjectFromGroup.projectName.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Project name is a required field</span>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <button nbButton status="primary" type="submit">Save</button>
+        </form>
+    </nb-card-body>
+</nb-card>

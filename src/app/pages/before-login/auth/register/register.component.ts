@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
                 this.loaderService.stopLoader();
                 if (res && res.success) {
                     this.router.navigate(['/auth/thank-you']);
-                    this.utilsService.showToast(SUCCESS, res.message[0]);
+                    this.utilsService.showToast(SUCCESS, res.message);
                 }
             },
             (err) => {

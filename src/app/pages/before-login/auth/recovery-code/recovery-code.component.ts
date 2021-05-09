@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserModuleMessages } from 'src/app/@core/constants/messages/user.constant';
 import { SUCCESS, WARNING } from 'src/app/@core/constants/toast.constant';
-import { UtilsService } from 'src/app/@core/services';
+import { LoaderService, UtilsService } from 'src/app/@core/services';
 import { AuthService } from 'src/app/@core/services/auth.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class RecoveryCodeComponent implements OnInit {
     recoveryCodeForm: FormGroup;
     resendCode: boolean;
     userId: string;
-    constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService, private utilsService: UtilsService) {
+    submitted: boolean;
+    constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService, private utilsService: UtilsService, public loaderService: LoaderService) {
         this.userId = this.activatedRoute.snapshot.params.userId;
     }
 
@@ -23,20 +25,23 @@ export class RecoveryCodeComponent implements OnInit {
 
     checkForValidRoute(): void {
         if (this.userId) {
+            this.loaderService.startLoader();
             this.authService.isRequestRecoveryRouteValid(this.userId).subscribe(
                 (res) => {
+                    this.loaderService.stopLoader();
                     if (!(res && res.success && res.data.valid)) {
-                        this.utilsService.showToast(WARNING, 'FORBIDDEN_ROUTE');
+                        this.utilsService.showToast(WARNING, UserModuleMessages.ROUTE_ACCESS_FORBIDDEN);
                         this.utilsService.navigateToLogin();
                     }
                 },
                 (err) => {
-                    this.utilsService.showToast(WARNING, 'FORBIDDEN_ROUTE');
+                    this.loaderService.stopLoader();
+                    this.utilsService.showToast(WARNING, err.message);
                     this.utilsService.navigateToLogin();
                 }
             );
         } else {
-            this.utilsService.showToast(WARNING, 'FORBIDDEN_ROUTE');
+            this.utilsService.showToast(WARNING, UserModuleMessages.ROUTE_ACCESS_FORBIDDEN);
             this.utilsService.navigateToLogin();
         }
     }
@@ -47,42 +52,51 @@ export class RecoveryCodeComponent implements OnInit {
         });
     }
 
+    get RecoveryCodeForm() {
+        return this.recoveryCodeForm.controls;
+    }
+
     onResendCode(): void {
         this.resendCode = true;
+        this.loaderService.startLoader();
         this.authService.resendRequestRecovery(this.userId).subscribe(
             (res) => {
+                this.loaderService.stopLoader();
                 if (res && res.success) {
-                    this.utilsService.showToast(SUCCESS, 'CODE_SENT_SUCCESSFULLY');
+                    this.utilsService.showToast(SUCCESS, res.message);
                 } else {
-                    this.utilsService.showToast(WARNING, 'FAIL_TO_SENT_CODE_TRY_AGAIN_LATER');
+                    this.utilsService.showToast(WARNING, UserModuleMessages.RECOVERY_CODE_SEND_FAILED);
                     this.utilsService.navigateToLogin();
                 }
             },
             (err) => {
-                this.utilsService.showToast(WARNING, 'FAIL_TO_SENT_CODE_TRY_AGAIN_LATER');
+                this.loaderService.stopLoader();
+                this.utilsService.showToast(WARNING, UserModuleMessages.RECOVERY_CODE_SEND_FAILED);
                 this.utilsService.navigateToLogin();
             }
         );
-        console.log('resending code');
     }
 
     onSubmitRecoveryCodeForm({ valid, value }): void {
         if (!valid) {
+            this.submitted = true;
             return;
         }
+        this.loaderService.startLoader();
         value.user = this.userId;
         this.authService.getResetPasswordRouteByCode(value).subscribe(
             (res) => {
+                this.loaderService.stopLoader();
                 if (res && res.success) {
                     this.router.navigateByUrl(res.data.resetUrl);
                 } else {
-                    this.utilsService.showToast(WARNING, 'INVALID_CODE');
+                    this.utilsService.showToast(WARNING, UserModuleMessages.RECOVERY_CODE_EXPIRED);
                 }
             },
             (err) => {
-                this.utilsService.showToast(WARNING, 'INVALID_CODE');
+                this.loaderService.stopLoader();
+                this.utilsService.showToast(WARNING, err.message);
             }
         );
-        console.log('Submitted', value);
     }
 }

@@ -19,6 +19,7 @@ export class TimelineProjectFormComponent implements OnInit, OnDestroy, OnChange
     @Input() timelineProject: any;
     @Output() onCreate = new EventEmitter();
     @Output() onUpdate = new EventEmitter();
+    @Output() onNew = new EventEmitter();
     timelineProjectFormGroup: FormGroup;
     submitted: boolean;
     actionButtons: Array<any> = [
@@ -47,6 +48,7 @@ export class TimelineProjectFormComponent implements OnInit, OnDestroy, OnChange
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        console.log(changes['timelineProject']);
         if (changes['timelineProject'].currentValue) {
             this.timelineProject = changes['timelineProject'].currentValue;
             this.resetForm();
@@ -124,6 +126,7 @@ export class TimelineProjectFormComponent implements OnInit, OnDestroy, OnChange
         this.timelineProject = null;
         this.timelineProjectFormGroup.enable();
         this.resetForm();
+        this.onNew.emit();
     }
 
     createNewTimelineProject(formData: any) {

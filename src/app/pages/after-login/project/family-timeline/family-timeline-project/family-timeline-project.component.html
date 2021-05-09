@@ -1,13 +1,13 @@
 <div class="page-header">
     <h1 class="title">Timeline Project</h1>
 </div>
-<app-timeline-project-form [type]="formType" [projectId]="projectId" [timelineProject]="formData" (onCreate)="createTimelineProject($event)" (onUpdate)="updateTimelineProject($event)"></app-timeline-project-form>
+<app-timeline-project-form [type]="formType" [projectId]="projectId" [timelineProject]="formData" (onCreate)="createTimelineProject($event)" (onUpdate)="updateTimelineProject($event)" (onNew)="onNewForm()"></app-timeline-project-form>
 <nb-card>
     <nb-card-body>
         <h6 class="title">List of timeline projects</h6>
         <table [nbTreeGrid]="data">
             <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="columns"></tr>
-            <tr [clickToToggle]="false" nbTreeGridRow *nbTreeGridRowDef="let row; columns: columns" [ngClass]="row.data.timelineProject._id === formData?._id ? 'active' : ''" (click)="clickRow(row.data)"></tr>
+            <tr [clickToToggle]="false" nbTreeGridRow *nbTreeGridRowDef="let row; columns: columns" [ngClass]="row.data.timelineProject._id === formData?._id ? 'active' : ''"></tr>
             <ng-container *ngFor="let column of columns; let i = index" [nbTreeGridColumnDef]="column">
                 <ng-template [ngIf]="column === 'action'">
                     <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef width="80px">
@@ -29,7 +29,7 @@
                     </td>
                 </ng-template>
                 <ng-template [ngIf]="column !== 'action'">
-                    <td nbTreeGridCell *nbTreeGridCellDef="let row">{{ row.data[column] || '-' }}</td>
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row" (click)="clickRow(row.data)">{{ row.data[column] || '-' }}</td>
                 </ng-template>
             </ng-container>
         </table>

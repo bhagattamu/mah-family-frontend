@@ -1,11 +1,14 @@
 <div [formGroup]="eventsGroup">
-    <div formArrayName="eventDatas">
+    <div formArrayName="eventDatas" class="event">
         <ng-container *ngFor="let eventData of eventDatas.controls; let i = index" [formGroupName]="i">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label for="title" class="label">*Event Title:</label>
                         <input type="text" nbInput fullWidth placeholder="Enter Event Title" formControlName="title" />
+                        <ng-container *ngIf="submitted && eventData.controls.title.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Event title is required field</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>
@@ -14,6 +17,9 @@
                     <div class="form-group">
                         <label for="type" class="label">*Event Type:</label>
                         <input type="text" nbInput fullWidth placeholder="Enter Event Type" formControlName="type" />
+                        <ng-container *ngIf="submitted && eventData.controls.type.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Event type is required field</span>
+                        </ng-container>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
@@ -21,6 +27,9 @@
                         <label for="timestamp" class="label">*Event Time:</label>
                         <input type="text" nbInput fullWidth [nbTimepicker]="eventTime" placeholder="Enter Event Time" formControlName="timestamp" />
                         <nb-timepicker #eventTime></nb-timepicker>
+                        <ng-container *ngIf="submitted && eventData.controls.timestamp.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Event time is required field</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>
@@ -31,6 +40,9 @@
                         <nb-select fullWidth placeholder="Select Emotion Type" formControlName="emotionType">
                             <nb-option *ngFor="let emotionType of emotionTypes" [value]="emotionType.value">{{ emotionType.name }}</nb-option>
                         </nb-select>
+                        <ng-container *ngIf="submitted && eventData.controls.emotionType.errors as err">
+                            <span *ngIf="err.required" class="caption status-danger">*Event emotion is required field</span>
+                        </ng-container>
                     </div>
                 </div>
             </div>

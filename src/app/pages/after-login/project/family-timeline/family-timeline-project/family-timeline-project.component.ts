@@ -116,6 +116,10 @@ export class FamilyTimelineProjectComponent implements OnInit, OnDestroy {
         this.data = this.dataSourceBuilder.create(this.tableData);
     }
 
+    onNewForm(): void {
+        this.formData = null;
+    }
+
     openMenu(timelineProject: any) {
         this.timelineProject = timelineProject;
     }
