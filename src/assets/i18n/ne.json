@@ -3,131 +3,177 @@
     "Dark": "Dark",
     "Cosmic": "Cosmic",
     "Corporate": "Corporate",
-    "new": "NEW",
-    "edit": "EDIT",
-    "view": "VIEW",
+    "new": "नयाँ",
+    "edit": "सम्पादन गर्नुहोस्",
+    "view": "दृश्य",
     "THANK_YOU_PAGE": {
-        "WELCOME": "Welcome to Ancestor Culture.",
-        "THANKING": "Thank you for your registration, you will be notified when your account is activated. This could take up to two weeks.",
-        "PROJECT_THEME":"Welcome to the initiative to learn and save culture in an inovative way.",
-        "HELP_MESSAGE": "We’re here to help",
-        "CONTACT_US_START": "If you have any questions, feel free to ",
-        "CONTACT_US_END": "contact us.",
-        "THANK_YOU": "Thank you",
-        "BRAND": "Ancestor Culture",
-        "CREATOR": "Bhagat Gurung"
+        "WELCOME": "पूर्वज संस्कृतिमा स्वागत छ।",
+        "THANKING": "तपाईको रजिष्ट्रेसनको लागि धन्यबाद, तपाईलाई सूचित गराईनेछ जब तपाईको खाता सक्रिय हुन्छ। यसले दुई हप्ता लिन सक्दछ।",
+        "PROJECT_THEME":"एक इनभेटिभ तरिकामा संस्कृति सिक्न र बचत गर्न पहलमा स्वागत छ।",
+        "HELP_MESSAGE": "हामी यहाँ मद्दत गर्न आएका छौं।",
+        "CONTACT_US_START": "यदि तपाईंसँग केहि प्रश्नहरू छन् भने हामीसँग ",
+        "CONTACT_US_END": "सम्पर्क राख्नुहोस्।",
+        "THANK_YOU": "धन्यवाद",
+        "BRAND": "पूर्वज संस्कृति",
+        "CREATOR": "भगत गुरुन"
     },
     "HEADER": {
-        "SELECT_LANGUAGE": "Select Language"
+        "SELECT_LANGUAGE": "भाषा छनोट गर्नुस"
     },
     "AUTH_MODULE": {
         "HEADING": {
-            "LOGIN": "Login",
-            "REGISTER": "Register",
-            "REQUEST_PASSWORD": "Request Password",
-            "RESET_PASSWORD": "Reset Password",
-            "RECOVERY_CODE": "Reset Password"
+            "LOGIN": "लग - इन",
+            "REGISTER": "रेजिष्टर गर्नुहोस्",
+            "REQUEST_PASSWORD": "पासवर्ड अनुरोध गर्नुहोस्",
+            "RESET_PASSWORD": "पासवर्ड रिसेट",
+            "RECOVERY_CODE": "पासवर्ड रिसेट"
         },
         "SUB_HEADING": {
-            "LOGIN": "Hello! Login with your email.",
-            "REGISTER": "Feel free to register. You are a step back to use this app.",
-            "REQUEST_PASSWORD": "This is sub heading of req pass",
+            "LOGIN": "नमस्कार! तपाईंको ईमेलको साथ लगईन गर्नुहोस्।",
+            "REGISTER": "दर्ता गर्न नहिचकिचाउनुहोस्। तपाईं यस अनुप्रयोग प्रयोग गर्न एक चरण पछि हुनुहुन्छ।",
+            "REQUEST_PASSWORD": "",
             "RESET_PASSWORD": "",
-            "RECOVERY_CODE": "Enter code to continue"
+            "RECOVERY_CODE": "जारी राख्न कोड प्रविष्ट गर्नुहोस्।"
         },
         "LABEL": {
-            "EMAIL_OR_PHONE": "Email or phone:",
-            "EMAIL": "Email Address:",
-            "PASSWORD": "Password:",
-            "CONFIRM_PASSWORD": "Confirm Password:",
-            "FIRST_NAME": "First name:",
-            "LAST_NAME": "Last name:",
-            "PHONE": "Phone number:",
-            "CODE": "Recovery Code:"
+            "EMAIL_OR_PHONE": "ईमेल वा फोन:",
+            "EMAIL": "इ - मेल ठेगाना:",
+            "PASSWORD": "पासवर्ड:",
+            "CONFIRM_PASSWORD": "पासवर्ड सुनिश्चित गर्नुहोस:",
+            "FIRST_NAME": "पहिलो नाम:",
+            "LAST_NAME": "थर:",
+            "PHONE": "फोन नम्बर:",
+            "CODE": "रिकभरी कोड:"
         },
         "PLACEHOLDER": {
-            "EMAIL_OR_PHONE": "Email or phone",
-            "EMAIL": "Email Address",
-            "PASSWORD": "Password",
-            "CONFIRM_PASSWORD": "Confirm Password",
-            "FIRST_NAME": "First name",
-            "LAST_NAME": "Last name",
-            "PHONE": "Phone number",
-            "LANGUAGE": "Select Language",
-            "CODE": "Enter recovery code"
+            "EMAIL_OR_PHONE": "ईमेल वा फोन",
+            "EMAIL": "इ - मेल ठेगाना",
+            "PASSWORD": "पासवर्ड",
+            "CONFIRM_PASSWORD": "पासवर्ड सुनिश्चित गर्नुहोस",
+            "FIRST_NAME": "पहिलो नाम",
+            "LAST_NAME": "थर",
+            "PHONE": "फोन नम्बर",
+            "LANGUAGE": "भाषा छनोट गर्नुस",
+            "CODE": "रिकभरी कोड प्रविष्ट गर्नुहोस्"
         },
         "BUTTON": {
-            "LOGIN": "Login",
-            "REGISTER": "Register",
-            "FORGET_PASSWORD": "Forget Password?",
-            "REQUEST_PASSWORD": "Request Password",
-            "BACK_TO_LOGIN": "Back To Login",
-            "RESEND_CODE": "Send code",
-            "CONTINUE": "Continue",
-            "RESET_PASSWORD": "Reset Password",
-            "TERMS_AND_CONDITIONS": "Terms and conditions"
+            "LOGIN": "लग - इन",
+            "REGISTER": "रेजिष्टर गर्नुहोस्",
+            "FORGET_PASSWORD": "पासवर्ड बिर्सनुभयो?",
+            "REQUEST_PASSWORD": "पासवर्ड अनुरोध गर्नुहोस्",
+            "BACK_TO_LOGIN": "लगईन गर्न फिर्ता",
+            "RESEND_CODE": "कोड पठाउनुहोस्",
+            "CONTINUE": "जारी राख्नुहोस्",
+            "RESET_PASSWORD": "पासवर्ड रिसेट",
+            "TERMS_AND_CONDITIONS": "नियम र सर्तहरू"
         },
         "MESSAGE": {
-            "EMAIL_REQUIRED": "Email is a required field",
-            "EMAIL_VALID": "Email is not valid",
-            "PASSWORD_REQUIRED": "Password is a required field",
-            "PASSWORD_MINLENGTH": "Password should be of atleast 4 character",
-            "PASSWORD_MAXLENGTH": "Password should not be more than 20 character",
-            "CONFIRM_PASSWORD_REQUIRED": "Confirm password is a required field",
-            "CONFIRM_PASSWORD_MATCH": "Confirm password does not match with password",
-            "FIRSTNAME_REQUIRED": "First Name is a required field",
-            "LASTNAME_REQUIRED": "Last Name is a required field",
-            "PHONE_REQUIRED": "Phone is a required field",
-            "RECOVERY_CODE_REQUIRED": "You should enter a code to continue",
-            "RECOVERY_CODE_VALID": "Recovery code is not valid",
-            "CODE_SENT_INFO": "You should receive code in email after 1 min",
-            "DONT_GET_CODE": "Don't receive code?",
-            "NO_ACCOUNT": "Don't have an account?",
-            "ALREADY_ACCOUNT": "Already have an account?",
-            "AGREE_TO": "Agree to"
+            "EMAIL_REQUIRED": "ईमेल आवश्यक क्षेत्र हो।",
+            "EMAIL_VALID": "ईमेल मान्य छैन।",
+            "PASSWORD_REQUIRED": "पासवर्ड आवाश्यक फिल्ड हो।",
+            "PASSWORD_MINLENGTH": "पासवर्ड कम्तिमा हुनुपर्दछ चार चरित्र।",
+            "PASSWORD_MAXLENGTH": "पासवर्ड २० वर्ण भन्दा बढि हुनु हुँदैन।",
+            "CONFIRM_PASSWORD_REQUIRED": "कन्फर्म पासवर्ड आवश्यक क्षेत्र हो।",
+            "CONFIRM_PASSWORD_MATCH": "निश्चित गर्नुहोस् कि पासवर्ड पासवर्डसँग मेल खाँदैन।",
+            "FIRSTNAME_REQUIRED": "पहिलो नाम आवश्यक फिल्ड हो।",
+            "LASTNAME_REQUIRED": "अन्तिम नाम आवश्यक फिल्ड हो।",
+            "PHONE_REQUIRED": "फोन आवश्यक क्षेत्र हो।",
+            "RECOVERY_CODE_REQUIRED": "जारी राख्न तपाईले कोड प्रविष्ट गर्नुपर्नेछ।",
+            "RECOVERY_CODE_VALID": "रिकभरी कोड मान्य छैन।",
+            "CODE_SENT_INFO": "तपाईले १ मिनेट पछि ईमेलमा कोड प्राप्त गर्नुपर्नेछ।",
+            "DONT_GET_CODE": "कोड प्राप्त गर्नुहुन्न?",
+            "NO_ACCOUNT": "खाता छैन?",
+            "ALREADY_ACCOUNT": "पहिले नै खाता छ?",
+            "AGREE_TO": "यसमा सहमत"
         }
     },
     "USER_MODULE": {
         "HEADING": {
-            "CHANGE_PASSWORD": "Change Password",
-            "PROFILE": "Profile"
+            "CHANGE_PASSWORD": "पासवर्ड परिवर्तन गर्नुहोस्",
+            "PROFILE": "प्रोफाइल"
         },
         "SUB_HEADING": {
-            "CHANGE_PASSWORD": "Please enter your current password and new password inorder to change your password"
+            "CHANGE_PASSWORD": "तपाईंको पासवर्ड परिवर्तन गर्नका लागि कृपया तपाईंको हालको पासवर्ड र नयाँ पासवर्ड ईन्डरर प्रविष्ट गर्नुहोस्।"
         },
         "LABEL": {
-            "PASSWORD": "Password: ",
-            "CURRENT_PASSWORD": "Current Password: ",
-            "CONFIRM_PASSWORD": "Confirm Password: "
+            "PASSWORD": "पासवर्ड: ",
+            "CURRENT_PASSWORD": "वर्तमान पासवर्ड: ",
+            "CONFIRM_PASSWORD": "पासवर्ड सुनिश्चित गर्नुहोस: "
         },
         "PLACEHOLDER": {
-            "PASSWORD": "Enter Password",
-            "CURRENT_PASSWORD": "Enter Current Password",
-            "CONFIRM_PASSWORD": "Enter Confirm Password"
+            "PASSWORD": "पासवर्ड प्रविष्ट गर्नुहोस्",
+            "CURRENT_PASSWORD": "हालको पासवर्ड प्रविष्ट गर्नुहोस्",
+            "CONFIRM_PASSWORD": "कन्फर्म पासवर्ड प्रविष्ट गर्नुहोस्"
         },
         "BUTTON": {
-            "CHANGE_PASSWORD": "Change Password"
+            "CHANGE_PASSWORD": "पासवर्ड परिवर्तन गर्नुहोस्"
         },
         "MESSAGE": ""
     },
     "PROJECT_MODULE": {
         "HEADING": {
-            "PROJECT": "Project",
-            "PROJECT_FORM": "Project Form"
+            "PROJECT": "प्रोजेक्ट",
+            "PROJECT_FORM": "परियोजना फारम",
+            "SUBJECT": "व्यक्ति",
+            "FAMILY_TREE": "वंश नक्शा",
+            "TIMELINE": "समय रेखा"
         },
         "LABEL": {
-            "CREATED_DATE": "Created Date",
-            "NAME": "Name: "
+            "CREATED_DATE": "सिर्जना गरिएको मिति",
+            "NAME": "नाम:"
         },
         "PLACEHOLDER": {
-            "NAME": "Enter Project Name"
+            "NAME": "प्रोजेक्ट नाम प्रविष्ट गर्नुहोस्"
         },
         "BUTTON": {
-            "ADD_PROJECT": "Add Project",
-            "SAVE": "Save"
+            "ADD_PROJECT": "परियोजना थप्नुहोस्",
+            "SAVE": "बचत गर्नुहोस्"
         },
         "MESSAGE": {
-            "PROJECT_NAME_REQUIRED": "Project name is a required field"
+            "PROJECT_NAME_REQUIRED": "परियोजना नाम आवश्यक क्षेत्र हो।"
+        }
+    },
+    "SUBJECT_MODULE": {
+        "HEADING": {
+            "SUBJECT": "व्यक्ति",
+            "FAMILY_TREE": "वंश नक्शा",
+            "NEW_SUBJECT": "नयाँ व्यक्ति",
+            "NEW_SPOUSE": "नयाँ जीवनसाथी - ",
+            "NEW_CHILD": "नयाँ बच्चा - "
+        },
+        "LABEL": {
+            "MOTHER": "आमा:",
+            "FATHER": "बुबा:",
+            "FIRST_NAME": "पहिलो नाम:",
+            "LAST_NAME": "थर:",
+            "GENDER": "लिङ्ग:",
+            "IS_LIVING": "के बाँचिरहेको छ?",
+            "COUNTRY": "देश:",
+            "ADDRESS": "ठेगाना: ",
+            "YES": "हो",
+            "NO": "होईन"
+        },
+        "PLACEHOLDER": {
+            "FIRST_NAME": "पहिलो नाम प्रविष्ट गर्नुहोस्",
+            "LAST_NAME": "थर प्रविष्ट गर्नुहोस्",
+            "GENDER": "लिङ्ग चयन गर्नुहोस्",
+            "DOB": "जन्म मिति छान्नुहोस्",
+            "DOD": "मृत्युको मिति छान्नुहोस्",
+            "COUNTRY": "देश चयन गर्नुहोस्",
+            "ADDRESS": "ठेगाना प्रविष्ट गर्नुहोस्"
+        },
+        "BUTTON": {
+            "ADD_SUBJECT": "व्यक्ति थप्नुहोस्",
+            "SAVE": "बचत गर्नुहोस्"
+        },
+        "MESSAGE": {
+            "FIRST_NAME_REQUIRED": "पहिलो नाम आवश्यक फिल्ड हो।",
+            "LAST_NAME_REQUIRED": "थर आवश्यक फिल्ड हो।",
+            "GENDER_REQUIRED": "जारी गर्न लिंग चयन गर्नुहोस्।",
+            "DOB_MAX": "जन्म मिति आज भन्दा अघि हुनुपर्दछ।",
+            "DOD_MAX": "मृत्युको मिति आज भन्दा अघिको हुनुपर्दछ।",
+            "PARENT_REQUIRED": "जारी राख्न अभिभावक चयन गर्नुहोस्।",
+            "ADD_ROOT_SUBJECT": "मूल व्यक्ति थप्नुहोस्"
         }
     }
 }
