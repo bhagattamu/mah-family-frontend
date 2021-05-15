@@ -65,7 +65,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         private langTranslateService: LangTranslateService
     ) {
         this.login$ = this.authService.getLoginStatus();
-        this.menuService.onItemClick().subscribe((event) => this.menuClickHandler(event.item));
+        this.menuService
+            .onItemClick()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((event) => this.menuClickHandler(event.item));
         this.login$.subscribe((res) => {
             if (res) {
                 this.userData = this.authService.getUserData();

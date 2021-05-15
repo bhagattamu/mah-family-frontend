@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService, NbMenuItem, NbMenuService, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 import { Subscription } from 'rxjs';
+import { WARNING } from 'src/app/@core/constants/toast.constant';
+import { LoaderService, UtilsService } from 'src/app/@core/services';
 import { ProjectService } from 'src/app/@core/services/project.service';
 import { SubjectService } from 'src/app/@core/services/subject.service';
 import { environment } from 'src/environments/environment';
@@ -41,8 +43,19 @@ export class SubjectComponent implements OnInit, OnDestroy {
     menuClickSubscribe: Subscription;
     BASE_URL = environment.API_HOST + '/files/subject-picture/';
     componentType: string;
+    dataFound: boolean;
 
-    constructor(private readonly projectService: ProjectService, private readonly router: Router, private readonly dialogService: NbDialogService, private readonly subjectService: SubjectService, public dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>, private readonly menuService: NbMenuService, private readonly activatedRoute: ActivatedRoute) {
+    constructor(
+        private readonly projectService: ProjectService,
+        private readonly router: Router,
+        private readonly dialogService: NbDialogService,
+        private readonly subjectService: SubjectService,
+        public dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>,
+        private readonly menuService: NbMenuService,
+        private readonly activatedRoute: ActivatedRoute,
+        public loaderService: LoaderService,
+        private utilsService: UtilsService
+    ) {
         this.projectId = this.activatedRoute.snapshot.params.projectId;
         if (this.router.url.includes('/family-tree')) {
             this.componentType = 'family-tree';
@@ -112,34 +125,52 @@ export class SubjectComponent implements OnInit, OnDestroy {
     }
 
     populateProjects(): void {
-        this.projectService.getAllProjectsInvolved().subscribe((res) => {
-            if (res && res.success) {
-                this.projects = res.data;
-                if (!this.projectId) {
-                    this.projectId = this.projects[0]._id;
-                }
-                this.subjectService.getSubjectByProjectId(this.projectId).subscribe((res) => {
-                    if (res && res.success && res.data && res.data.length) {
-                        this.tableData = res.data;
-                        this.subjects = [...res.data];
-                        this.data = this.dataSourceBuilder.create(this.createTreeGridDataArray(this.subjects));
-                    } else {
-                        if (this.componentType === 'family-tree') {
-                            const addSubjectDialogOpen = this.dialogService.open(AddNewSubjectComponent, { context: { projectId: this.projectId, message: 'Add Root Subject' } });
-                            addSubjectDialogOpen.onClose.subscribe((onCloseRes) => {
-                                if (onCloseRes && onCloseRes.success) {
-                                    this.tableData = [...this.tableData, onCloseRes.data];
-                                    const tableData = [...this.tableData];
-                                    this.data = this.dataSourceBuilder.create(this.createTreeGridDataArray(tableData));
-                                } else {
-                                    this.router.navigate(['/project/' + this.projectId]);
-                                }
-                            });
-                        }
+        this.loaderService.startLoader();
+        this.dataFound = false;
+        this.projectService.getAllProjectsInvolved().subscribe(
+            (res) => {
+                if (res && res.success) {
+                    this.projects = res.data;
+                    if (!this.projectId) {
+                        this.projectId = this.projects[0]._id;
                     }
-                });
+                    this.subjectService.getSubjectByProjectId(this.projectId).subscribe(
+                        (res) => {
+                            this.loaderService.stopLoader();
+                            if (res && res.success && res.data && res.data.length) {
+                                this.dataFound = true;
+                                this.tableData = res.data;
+                                this.subjects = [...res.data];
+                                this.data = this.dataSourceBuilder.create(this.createTreeGridDataArray(this.subjects));
+                            } else {
+                                if (this.componentType === 'family-tree') {
+                                    const addSubjectDialogOpen = this.dialogService.open(AddNewSubjectComponent, { context: { projectId: this.projectId, message: 'SUBJECT_MODULE.MESSAGE.ADD_ROOT_SUBJECT' } });
+                                    addSubjectDialogOpen.onClose.subscribe((onCloseRes) => {
+                                        if (onCloseRes && onCloseRes.success) {
+                                            this.tableData = [...this.tableData, onCloseRes.data];
+                                            const tableData = [...this.tableData];
+                                            this.data = this.dataSourceBuilder.create(this.createTreeGridDataArray(tableData));
+                                        } else {
+                                            this.router.navigate(['/project/' + this.projectId]);
+                                        }
+                                    });
+                                } else {
+                                    this.loaderService.stopLoader();
+                                }
+                            }
+                        },
+                        (err) => {
+                            this.loaderService.stopLoader();
+                            this.utilsService.showToast(WARNING, err.message);
+                        }
+                    );
+                }
+            },
+            (err) => {
+                this.loaderService.stopLoader();
+                this.utilsService.showToast(WARNING, err.message);
             }
-        });
+        );
     }
 
     createSpouse(subject: any): string {

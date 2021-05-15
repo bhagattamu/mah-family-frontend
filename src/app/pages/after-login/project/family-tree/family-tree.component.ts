@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbMediaBreakpointsService, NbThemeService } from '@nebular/theme';
@@ -115,7 +116,7 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
                         </div><br>
                         <div class="imageDetail">
                             <p>${name}</p>
-                            <p>${extra && extra?.dateOfBirth ? extra?.dateOfBirth : 'Unknown'} - ${extra && extra?.dateOfDeath ? (extra?.dateOfDeath === '_' ? 'Living' : extra?.dateOfDeath) : 'Unknown'}</p>
+                            <p>${extra && extra?.dateOfBirth ? formatDate(extra?.dateOfBirth, 'yyyy/MM/dd', 'en') : 'Unknown'} - ${extra && extra?.dateOfDeath ? formatDate(extra?.dateOfDeath, 'yyyy/MM/dd', 'en') : extra && extra.isLiving ? 'Living' : 'Unknown'}</p>
                         <div>
                         `;
                 },

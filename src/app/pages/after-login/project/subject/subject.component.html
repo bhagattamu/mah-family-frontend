@@ -1,14 +1,20 @@
 <div class="page-header">
-    <h1 class="title">{{ componentType === 'subject' ? 'Subject' : 'Family Tree' }}</h1>
+    <h1 class="title">{{ componentType === 'subject' ? ('SUBJECT_MODULE.HEADING.SUBJECT' | translate) : ('SUBJECT_MODULE.HEADING.FAMILY_TREE' | translate) }}</h1>
     <ng-container *ngIf="componentType === 'subject'">
         <section class="my-auto">
-            <button nbButton hero status="primary" (click)="openAddSubjectDialog()"><nb-icon icon="person-outline"></nb-icon>Add Subject</button>
+            <button nbButton hero status="primary" (click)="openAddSubjectDialog()"><nb-icon icon="person-outline"></nb-icon>{{ 'SUBJECT_MODULE.BUTTON.ADD_SUBJECT' | translate }}</button>
         </section>
     </ng-container>
 </div>
 <nb-card>
     <nb-card-body>
-        <table [nbTreeGrid]="data">
+        <ng-container *ngIf="(loaderService.getLoaderSubject | async) && !dataFound">
+            <app-loader></app-loader>
+        </ng-container>
+        <ng-container *ngIf="!(loaderService.getLoaderSubject | async) && !dataFound">
+            <app-data-not-found type="{{ componentType === 'subject' ? ('SUBJECT_MODULE.HEADING.SUBJECT' | translate) : ('SUBJECT_MODULE.HEADING.FAMILY_TREE' | translate) }}"></app-data-not-found>
+        </ng-container>
+        <table *ngIf="!(loaderService.getLoaderSubject | async) && dataFound" [nbTreeGrid]="data">
             <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="columns"></tr>
             <tr [clickToToggle]="false" nbTreeGridRow *nbTreeGridRowDef="let row; columns: columns"></tr>
             <ng-container *ngFor="let column of columns; let i = index" [nbTreeGridColumnDef]="column">

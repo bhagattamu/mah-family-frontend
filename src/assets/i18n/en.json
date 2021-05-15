@@ -132,5 +132,48 @@
         "MESSAGE": {
             "PROJECT_NAME_REQUIRED": "Project name is a required field"
         }
+    },
+    "SUBJECT_MODULE": {
+        "HEADING": {
+            "SUBJECT": "Subject",
+            "FAMILY_TREE": "Family Tree",
+            "NEW_SUBJECT": "New Subject",
+            "NEW_SPOUSE": "New Spouse - For ",
+            "NEW_CHILD": "New Child - For "
+        },
+        "LABEL": {
+            "MOTHER": "Mother:",
+            "FATHER": "Father:",
+            "FIRST_NAME": "First name:",
+            "LAST_NAME": "Last name:",
+            "GENDER": "Select Gender:",
+            "IS_LIVING": "Is living?",
+            "COUNTRY": "Country:",
+            "ADDRESS": "Address: ",
+            "YES": "Yes",
+            "NO": "No"
+        },
+        "PLACEHOLDER": {
+            "FIRST_NAME": "Enter First Name",
+            "LAST_NAME": "Enter Last Name",
+            "GENDER": "Select Gender",
+            "DOB": "Pick Date of birth",
+            "DOD": "Pick Date of death",
+            "COUNTRY": "Select Country",
+            "ADDRESS": "Enter Address"
+        },
+        "BUTTON": {
+            "ADD_SUBJECT": "Add Subject",
+            "SAVE": "Save"
+        },
+        "MESSAGE": {
+            "FIRST_NAME_REQUIRED": "First name is a required field",
+            "LAST_NAME_REQUIRED": "Last name is a required field",
+            "GENDER_REQUIRED": "Select gender to continue",
+            "DOB_MAX": "Date of Birth must be before today",
+            "DOD_MAX": "Date of Death must be before today",
+            "PARENT_REQUIRED": "Select parent to continue",
+            "ADD_ROOT_SUBJECT": "Add root subject"
+        }
     }
 }

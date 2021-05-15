@@ -62,6 +62,7 @@ export class AdminManageUserComponent implements OnInit, OnDestroy {
 
     getAllUsers(query: any) {
         this.loaderService.startLoader();
+        this.dataFound = false;
         this.authService.getAllUser(query).subscribe(
             (res) => {
                 this.loaderService.stopLoader();

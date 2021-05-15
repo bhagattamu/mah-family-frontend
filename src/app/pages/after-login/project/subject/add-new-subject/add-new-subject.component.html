@@ -1,6 +1,6 @@
 <nb-card class="dialog-card" [nbSpinner]="loaderService.getLoaderSubject | async" nbSpinnerStatus="info">
     <nb-card-header>
-        <h6>New Subject - {{ projectId }}</h6>
+        <h6>{{ 'SUBJECT_MODULE.HEADING.NEW_SUBJECT' | translate }}</h6>
         <button nbButton (click)="closeDialog()">
             <nb-icon icon="close-outline"></nb-icon>
         </button>
@@ -8,7 +8,7 @@
     <nb-card-body>
         <form [formGroup]="newSubjectForm" (ngSubmit)="onSaveNewSubject(newSubjectForm)">
             <nb-alert *ngIf="message" outline="success">
-                {{ message }}
+                {{ message | translate }}
             </nb-alert>
             <div class="row">
                 <div class="col">
@@ -28,19 +28,19 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
-                        <label for="firstName" class="label">*First Name:</label>
-                        <input type="text" nbInput fullWidth placeholder="Enter First name" formControlName="firstName" />
+                        <label for="firstName" class="label">*{{ 'SUBJECT_MODULE.LABEL.FIRST_NAME' | translate }}</label>
+                        <input type="text" nbInput fullWidth placeholder="{{ 'SUBJECT_MODULE.PLACEHOLDER.FIRST_NAME' | translate }}" formControlName="firstName" />
                         <ng-container *ngIf="submitted && SubjectForm.firstName.errors as err">
-                            <span *ngIf="err.required" class="caption status-danger">*First Name is a required field</span>
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'SUBJECT_MODULE.MESSAGE.FIRST_NAME_REQUIRED' | translate }}</span>
                         </ng-container>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
-                        <label for="lastName" class="label">*Last Name:</label>
-                        <input type="text" nbInput fullWidth placeholder="Enter Last name" formControlName="lastName" />
+                        <label for="lastName" class="label">*{{ 'SUBJECT_MODULE.LABEL.LAST_NAME' | translate }}</label>
+                        <input type="text" nbInput fullWidth placeholder="{{ 'SUBJECT_MODULE.PLACEHOLDER.LAST_NAME' | translate }}" formControlName="lastName" />
                         <ng-container *ngIf="submitted && SubjectForm.lastName.errors as err">
-                            <span *ngIf="err.required" class="caption status-danger">*Last Name is a required field</span>
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'SUBJECT_MODULE.MESSAGE.LAST_NAME_REQUIRED' | translate }}</span>
                         </ng-container>
                     </div>
                 </div>
@@ -48,12 +48,12 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
-                        <label for="gender" class="label">*Select Gender:</label>
-                        <nb-select fullWidth placeholder="Select Gender" formControlName="gender">
+                        <label for="gender" class="label">*{{ 'SUBJECT_MODULE.LABEL.GENDER' | translate }}</label>
+                        <nb-select fullWidth placeholder="{{ 'SUBJECT_MODULE.PLACEHOLDER.GENDER' | translate }}" formControlName="gender">
                             <nb-option *ngFor="let genderRow of genders" [value]="genderRow.sGender">{{ genderRow.lGender }}</nb-option>
                         </nb-select>
                         <ng-container *ngIf="submitted && SubjectForm.gender.errors as err">
-                            <span *ngIf="err.required" class="caption status-danger">*Select a gender to continue</span>
+                            <span *ngIf="err.required" class="caption status-danger">*{{ 'SUBJECT_MODULE.MESSAGE.GENDER_REQUIRED' | translate }}</span>
                         </ng-container>
                     </div>
                 </div>
@@ -61,8 +61,49 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="country" class="label">*Country:</label>
-                        <input type="text" nbInput fullWidth placeholder="" formControlName="country" />
+                        <label for="livingStatus" class="label">{{ 'SUBJECT_MODULE.LABEL.IS_LIVING' | translate }}</label>
+                        <nb-radio-group formControlName="isLiving">
+                            <nb-radio [value]="true"> {{ 'SUBJECT_MODULE.LABEL.YES' | translate }} </nb-radio>
+                            <nb-radio [value]="false"> {{ 'SUBJECT_MODULE.LABEL.NO' | translate }} </nb-radio>
+                        </nb-radio-group>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <nb-form-field>
+                            <input nbInput #dobInput fullWidth placeholder="{{ 'SUBJECT_MODULE.PLACEHOLDER.DOB' | translate }}" [nbDatepicker]="dob" formControlName="dateOfBirth" (input)="onChangeDateOfBirth($event.target.value)" />
+                            <nb-datepicker #dob [max]="maxDate"></nb-datepicker>
+                            <button nbSuffix nbButton ghost type="button" (click)="dobInput.click()">
+                                <nb-icon icon="calendar-outline"> </nb-icon>
+                            </button>
+                        </nb-form-field>
+                        <ng-container *ngIf="submitted && SubjectForm.dateOfBirth.errors as err">
+                            <span *ngIf="err.nbDatepickerMax" class="caption status-danger">{{ 'SUBJECT_MODULE.MESSAGE.DOB_MAX' | translate }}</span>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6" *ngIf="!SubjectForm.isLiving.value">
+                    <div class="form-group">
+                        <nb-form-field>
+                            <input nbInput #dodInput fullWidth placeholder="{{ 'SUBJECT_MODULE.PLACEHOLDER.DOD' | translate }}" [nbDatepicker]="dod" formControlName="dateOfDeath" (input)="onChangeDateOfDeath($event.target.value)" />
+                            <nb-datepicker #dod [max]="maxDate"></nb-datepicker>
+                            <button nbSuffix nbButton ghost type="button" (click)="dodInput.click()">
+                                <nb-icon icon="calendar-outline"> </nb-icon>
+                            </button>
+                        </nb-form-field>
+                        <ng-container *ngIf="submitted && SubjectForm.dateOfDeath.errors as err">
+                            <span *ngIf="err.nbDatepickerMax" class="caption status-danger">{{ 'SUBJECT_MODULE.MESSAGE.DOD_MAX' | translate }}</span>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="country" class="label">*{{ 'SUBJECT_MODULE.LABEL.COUNTRY' | translate }}</label>
+                        <input type="text" nbInput fullWidth placeholder="{{ 'SUBJECT_MODULE.PLACEHOLDER.COUNTRY' | translate }}" formControlName="country" />
                         <!-- <nb-list *ngIf="showList">
                             <nb-list-item *ngFor="let fruit of fruits" (click)="onSelectList(fruit)">
                                 {{ fruit }}
@@ -74,12 +115,12 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="address" class="label">*Address:</label>
-                        <input type="text" nbInput fullWidth placeholder="" formControlName="address" />
+                        <label for="address" class="label">*{{ 'SUBJECT_MODULE.LABEL.ADDRESS' | translate }}</label>
+                        <input type="text" nbInput fullWidth placeholder="{{ 'SUBJECT_MODULE.PLACEHOLDER.ADDRESS' | translate }}" formControlName="address" />
                     </div>
                 </div>
             </div>
-            <button nbButton hero status="primary" type="submit">Save</button>
+            <button nbButton hero status="primary" type="submit">{{ 'SUBJECT_MODULE.BUTTON.SAVE' | translate }}</button>
         </form>
     </nb-card-body>
 </nb-card>

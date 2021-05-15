@@ -20,6 +20,7 @@ export class AddNewChildrenComponent implements OnInit {
     parents: Array<any>;
     imageURL: any;
     submitted: boolean;
+    maxDate = new Date();
 
     constructor(private readonly ref: NbDialogRef<AddNewChildrenComponent>, private readonly fb: FormBuilder, private readonly subjectService: SubjectService, private readonly utilsService: UtilsService, public loaderService: LoaderService) {
         this.genders = GENDER;
@@ -45,6 +46,7 @@ export class AddNewChildrenComponent implements OnInit {
             // ],
             country: [''],
             address: [''],
+            isLiving: [''],
             dateOfBirth: [''],
             dateOfDeath: [''],
             userPicture: ['']
@@ -86,6 +88,8 @@ export class AddNewChildrenComponent implements OnInit {
             return;
         }
         this.loaderService.startLoader();
+        if (!value.dateOfBirth) value.dateOfBirth = '';
+        if (!value.dateOfDeath) value.dateOfDeath = '';
         let formData: any;
         let hasFormData: boolean;
         if (this.ChildForm.userPicture.value) {
@@ -122,5 +126,17 @@ export class AddNewChildrenComponent implements OnInit {
 
     closeDialog(): void {
         this.ref.close();
+    }
+
+    onChangeDateOfBirth(value): void {
+        if (!value) {
+            this.newChildForm.get('dateOfBirth').setErrors(null);
+        }
+    }
+
+    onChangeDateOfDeath(value): void {
+        if (!value) {
+            this.newChildForm.get('dateOfDeath').setErrors(null);
+        }
     }
 }

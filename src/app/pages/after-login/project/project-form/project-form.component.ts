@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
+import { MessageKey } from 'src/app/@core/constants/messages';
 import { SUCCESS, WARNING } from 'src/app/@core/constants/toast.constant';
 import { LoaderService, ProjectService, UtilsService } from 'src/app/@core/services';
 
@@ -44,14 +45,14 @@ export class ProjectFormComponent implements OnInit {
                 this.loaderService.stopLoader();
                 if (res && res.success) {
                     this.ref.close(res.data);
-                    this.utilsService.showToast(SUCCESS, 'Successfully created project.');
+                    this.utilsService.showToast(SUCCESS, res.message);
                 } else {
-                    this.utilsService.showToast(WARNING, 'Failed to create project.');
+                    this.utilsService.showToast(WARNING, MessageKey.PROJECT_CREATION_FAILED);
                 }
             },
             (err) => {
                 this.loaderService.stopLoader();
-                this.utilsService.showToast(WARNING, 'Failed to create project.');
+                this.utilsService.showToast(WARNING, err.message);
             }
         );
     }
@@ -63,14 +64,14 @@ export class ProjectFormComponent implements OnInit {
                 if (res && res.success) {
                     this.ref.close(updateProjectDto);
 
-                    this.utilsService.showToast(SUCCESS, 'Successfully updated project.');
+                    this.utilsService.showToast(SUCCESS, res.message);
                 } else {
-                    this.utilsService.showToast(WARNING, 'Failed to update project.');
+                    this.utilsService.showToast(WARNING, MessageKey.PROJECT_UPDATE_FAILED);
                 }
             },
             (err) => {
                 this.loaderService.stopLoader();
-                this.utilsService.showToast(WARNING, 'Failed to update project.');
+                this.utilsService.showToast(WARNING, err.message);
             }
         );
     }

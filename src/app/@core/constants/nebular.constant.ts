@@ -27,7 +27,8 @@ import {
     NbTabsetModule,
     NbRouteTabsetModule,
     NbAlertModule,
-    NbWindowModule
+    NbWindowModule,
+    NbRadioModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MglTimelineModule } from 'angular-mgl-timeline';
@@ -64,5 +65,6 @@ export const NEBULAR_COMPONENTS_MODULE = [
     NbAutocompleteModule,
     NbTabsetModule,
     NbRouteTabsetModule,
-    NbAlertModule
+    NbAlertModule,
+    NbRadioModule
 ];

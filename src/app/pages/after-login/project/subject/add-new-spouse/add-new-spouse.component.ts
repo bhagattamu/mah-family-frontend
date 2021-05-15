@@ -19,6 +19,7 @@ export class AddNewSpouseComponent implements OnInit {
     genders: Array<any>;
     imageURL: any;
     submitted: boolean;
+    maxDate = new Date();
     constructor(private readonly ref: NbDialogRef<AddNewSpouseComponent>, private readonly fb: FormBuilder, private subjectService: SubjectService, private utilsService: UtilsService, public loaderService: LoaderService) {
         this.genders = GENDER;
     }
@@ -41,6 +42,7 @@ export class AddNewSpouseComponent implements OnInit {
             // ],
             country: [''],
             address: [''],
+            isLiving: [true],
             dateOfBirth: [''],
             dateOfDeath: [''],
             userPicture: ['']
@@ -72,6 +74,8 @@ export class AddNewSpouseComponent implements OnInit {
         }
         this.loaderService.startLoader();
         value.projectId = this.projectId;
+        if (!value.dateOfBirth) value.dateOfBirth = '';
+        if (!value.dateOfDeath) value.dateOfDeath = '';
         let formData: any;
         let hasFormData: boolean;
         if (this.SpouseForm.userPicture.value) {
@@ -107,5 +111,17 @@ export class AddNewSpouseComponent implements OnInit {
 
     closeDialog(): void {
         this.ref.close();
+    }
+
+    onChangeDateOfBirth(value): void {
+        if (!value) {
+            this.newSpouseForm.get('dateOfBirth').setErrors(null);
+        }
+    }
+
+    onChangeDateOfDeath(value): void {
+        if (!value) {
+            this.newSpouseForm.get('dateOfDeath').setErrors(null);
+        }
     }
 }
